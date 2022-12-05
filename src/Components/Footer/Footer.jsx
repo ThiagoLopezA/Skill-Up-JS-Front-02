@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <div>
       <footer className="text-black py-4 bg-white">
-        <div className="container d-flez align-items-center">
+        <div className="container align-items-center">
           <nav className="row">
             <div className="text-start col">
               <p className="fs-6"> © Copyright, 2022. All rights reserved</p>
