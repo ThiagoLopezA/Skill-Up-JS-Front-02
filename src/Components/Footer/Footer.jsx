@@ -3,36 +3,41 @@ import React from "react";
 const Footer = () => {
   const socialMedia = [
     {
-      id: 1,
       name: "linkedIn",
-      icon: <i class="bi bi-linkedin"></i>,
+      icon: <i className="bi bi-linkedin"></i>,
       link: "https://www.linkedin.com/",
     },
     {
-      id: 2,
       name: "Instagram",
-      icon: <i class="bi bi-instagram"></i>,
+      icon: <i className="bi bi-instagram"></i>,
       link: "https://www.instagram.com/",
     },
     {
-      id: 3,
       name: "Facebook",
-      icon: <i class="bi bi-facebook"></i>,
+      icon: <i className="bi bi-facebook"></i>,
       link: "https://www.facebook.com/",
     },
   ];
   return (
     <div>
       <footer className="text-black py-4 bg-white">
-        <div className="container">
-          <div>{socialMedia.map(({ id, name, icon, link }) => {
-            <div key={id}>
-
+        <div className="container d-flez align-items-center">
+          <nav className="row">
+            <div className="text-start col">
+              <p className="fs-6"> © Copyright, 2022. All rights reserved</p>
             </div>
-          })}</div>
-          <div className="text-start">
-            © Copyrigth, 2022. All rights reserved
-          </div>
+            <ul className="col list-unstyled d-flex justify-content-end">
+              {socialMedia.map((data) => {
+                return (
+                  <li key={data.name} className="px-4">
+                    <a href={data.link} target="_blank" className="text-reset">
+                      {data.icon}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </div>
       </footer>
     </div>
