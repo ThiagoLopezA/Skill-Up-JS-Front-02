@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-    "author": "gabodmc",
+  "author": "gabodmc",
   "homepage": "https://github.com/gabodmc/front-js-template-alkemy#readme",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.2",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
