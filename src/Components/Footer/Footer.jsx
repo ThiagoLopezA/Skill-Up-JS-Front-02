@@ -24,7 +24,8 @@ const Footer = () => {
         <div className="container align-items-center">
           <nav className="row">
             <div className="text-start col">
-              <p className="fs-6"> © Copyright, 2022. All rights reserved</p>
+              <p className="fs-6"> 
+              &copy;{new Date().getFullYear()}. All rights reserved</p>
             </div>
             <ul className="col list-unstyled d-flex justify-content-end">
               {socialMedia.map((data) => {
