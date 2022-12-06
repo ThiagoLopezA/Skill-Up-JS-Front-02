@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ elements }) {
   return (
@@ -23,10 +24,9 @@ export default function Navbar({ elements }) {
             {elements.map((e, i) => {
               return (
                 <li key={e + i} className="nav-item">
-                  {/* Change this to Link */}
-                  <a className="nav-link" href={e.link}>
+                  <Link className="nav-link" to={e.route}>
                     {e.text}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
