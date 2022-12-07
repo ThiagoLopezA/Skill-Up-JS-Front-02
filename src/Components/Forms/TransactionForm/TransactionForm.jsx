@@ -2,6 +2,7 @@ import React from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Button from "../../Button/Button";
+import InputField from "../../InputField/InputField";
 
 export default function TransactionForm({ handleSubmit }) {
   const validationSchema = yup.object().shape({
@@ -24,41 +25,18 @@ export default function TransactionForm({ handleSubmit }) {
   });
   return (
     <form onSubmit={formik.handleSubmit} className="d-flex flex-column p-2">
-      <input
+      <InputField
         type="text"
         placeholder="Descripción"
-        className={`form-control mb-1 ${
-          formik.touched.description
-            ? Boolean(formik.errors.description)
-              ? "is-invalid"
-              : "is-valid"
-            : ""
-        }`}
         name="description"
-        value={formik.values.description}
-        onChange={formik.handleChange}
+        formik={formik}
       />
-      {formik.touched.description && formik.errors.description && (
-        <div class="invalid-feedback mb-2">{formik.errors.description}</div>
-      )}
-
-      <input
+      <InputField
         type="number"
-        name="amount"
         placeholder="Cantidad"
-        className={`form-control mb-1 ${
-          formik.touched.amount
-            ? Boolean(formik.errors.amount)
-              ? "is-invalid"
-              : "is-valid"
-            : ""
-        }`}
-        value={formik.values.amount}
-        onChange={formik.handleChange}
+        name="amount"
+        formik={formik}
       />
-      {formik.touched.amount && formik.errors.amount && (
-        <div class="invalid-feedback mb-2">{formik.errors.amount}</div>
-      )}
 
       <select
         type="number"
