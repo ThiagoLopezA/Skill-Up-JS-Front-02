@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Button from "../../Button/Button";
 import InputField from "../../InputField/InputField";
+import SelectField from "../../SelectField/SelectField";
 
 export default function TransactionForm({ handleSubmit }) {
   const validationSchema = yup.object().shape({
@@ -16,6 +17,7 @@ export default function TransactionForm({ handleSubmit }) {
     categoryId: "",
   };
   const onSubmit = values => {
+    console.log(values);
     handleSubmit(values);
   };
   const formik = useFormik({
@@ -37,27 +39,11 @@ export default function TransactionForm({ handleSubmit }) {
         name="amount"
         formik={formik}
       />
-
-      <select
-        type="number"
-        name="categoryId"
-        className={`form-select mb-1 ${
-          formik.touched.categoryId
-            ? Boolean(formik.errors.categoryId)
-              ? "is-invalid"
-              : "is-valid"
-            : ""
-        }`}
-        value={formik.values.categoryId}
-        onChange={formik.handleChange}
-      >
+      <SelectField name="categoryId" type="number" formik={formik}>
         <option value="">Seleccionar una categoría</option>
         <option value="1">category A</option>
         <option value="2">category B</option>
-      </select>
-      {formik.touched.categoryId && formik.errors.categoryId && (
-        <div class="invalid-feedback mb-2">{formik.errors.categoryId}</div>
-      )}
+      </SelectField>
       <Button type="submit" variant="primary">
         Confirmar
       </Button>
