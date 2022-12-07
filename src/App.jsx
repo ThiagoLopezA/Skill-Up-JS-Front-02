@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <AppRoutes />
+      <Footer />
     </Router>
-    <Footer />
   );
 }
 
