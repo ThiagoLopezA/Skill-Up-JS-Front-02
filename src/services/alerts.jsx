@@ -3,6 +3,31 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
+function confirmAlert(title, message) {
+  MySwal.fire({
+    title: title,
+    text: message,
+    icon: "success",
+  });
+}
+
+function errorAlert(title, message) {
+  MySwal.fire({
+    title: title,
+    text: message,
+    icon: "error",
+  });
+}
+
+function infoAlert(title, message) {
+  MySwal.fire({
+    title: title,
+    text: message,
+    icon: "info",
+    iconColor: "#EC5800",
+  });
+}
+
 const questionAlert = async (title, message) => {
   try {
     const response = await MySwal.fire({
@@ -28,4 +53,4 @@ const questionAlert = async (title, message) => {
   }
 };
 
-export default questionAlert;
+export default { confirmAlert, errorAlert, infoAlert, questionAlert };
