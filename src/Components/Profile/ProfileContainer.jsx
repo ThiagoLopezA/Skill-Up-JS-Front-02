@@ -1,7 +1,12 @@
+import { useState } from 'react'
 import Profile from './Profile'
 import HomeroAvatar from '../../assets/homero.png'
 
 const ProfileContainer = () => {
+  const [edit, setEdit] = useState(false)
+
+  const handleEdit = () => setEdit(true)
+
   const user = {
     firstName: 'Homero',
     lastName: 'Simpson',
@@ -11,7 +16,7 @@ const ProfileContainer = () => {
     roleId: 1,
   }
 
-  return <Profile user={user} />
+  return <Profile user={user} edit={edit} onEdit={handleEdit} />
 }
 
 export default ProfileContainer

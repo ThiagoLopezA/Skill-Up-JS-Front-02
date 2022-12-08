@@ -1,6 +1,8 @@
 import Button from '../Button/Button'
 
-const Profile = ({ user }) => {
+const Profile = ({ user, edit, onEdit }) => {
+  const cursor = edit ? 'text' : 'no-drop'
+
   return (
     <div className="container pt-5">
       <h1 className="mb-4">My Profile</h1>
@@ -12,7 +14,8 @@ const Profile = ({ user }) => {
             type="button"
             variant="warning"
             size="lg"
-            handleClick={() => {}}
+            handleClick={onEdit}
+            disabled={edit}
           >
             Edit
           </Button>
@@ -27,7 +30,7 @@ const Profile = ({ user }) => {
         </div>
       </div>
 
-      <form className="mt-3">
+      <form className="mt-3 py-4">
         <div className="mb-3">
           <img
             className="rounded-circle"
@@ -37,7 +40,9 @@ const Profile = ({ user }) => {
             src={user.avatar}
             alt="Avatar"
           />
-          <input type="file" class="form-control-file ms-3" id="avatar" />
+          {edit && (
+            <input type="file" class="form-control-file ms-3" id="avatar" />
+          )}
         </div>
         <div class="mb-3">
           <label for="firstName" class="form-label">
@@ -46,11 +51,11 @@ const Profile = ({ user }) => {
           <input
             type="text"
             class="form-control"
-            style={{ cursor: 'no-drop' }}
+            style={{ cursor }}
             id="firstName"
             placeholder="John"
             value={user.firstName}
-            readOnly
+            readOnly={!edit}
           />
         </div>
         <div class="mb-3">
@@ -60,31 +65,33 @@ const Profile = ({ user }) => {
           <input
             type="text"
             class="form-control"
-            style={{ cursor: 'no-drop' }}
+            style={{ cursor }}
             id="lastName"
             placeholder="Doe"
             value={user.lastName}
-            readOnly
+            readOnly={!edit}
           />
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
           <label for="email" class="form-label">
             Email
           </label>
           <input
             type="email"
             class="form-control"
-            style={{ cursor: 'no-drop' }}
+            style={{ cursor }}
             id="email"
             placeholder="name@example.com"
             value={user.email}
-            readOnly
+            readOnly={!edit}
           />
         </div>
 
-        <button type="submit" className="btn btn-primary btn-lg">
-          Update
-        </button>
+        {edit && (
+          <button type="submit" className="btn btn-primary btn-lg">
+            Update
+          </button>
+        )}
       </form>
     </div>
   )
