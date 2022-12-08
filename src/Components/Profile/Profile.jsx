@@ -1,7 +1,10 @@
 import Button from '../Button/Button'
 
-const Profile = ({ user, edit, onEdit }) => {
+const Profile = ({ formik, edit, onEdit }) => {
   const cursor = edit ? 'text' : 'no-drop'
+
+  const { values, handleChange, errors, touched, handleBlur, handleSubmit } =
+    formik
 
   return (
     <div className="container pt-5">
@@ -37,15 +40,20 @@ const Profile = ({ user, edit, onEdit }) => {
             width={150}
             height={150}
             style={{ objectFit: 'cover' }}
-            src={user.avatar}
+            src={values.avatar}
             alt="Avatar"
           />
           {edit && (
-            <input type="file" class="form-control-file ms-3" id="avatar" />
+            <input
+              type="file"
+              class="form-control-file ms-3"
+              id="avatar"
+              onChange={handleChange}
+            />
           )}
         </div>
         <div class="mb-3">
-          <label for="firstName" class="form-label">
+          <label htmlFor="firstName" class="form-label">
             First Name
           </label>
           <input
@@ -54,12 +62,17 @@ const Profile = ({ user, edit, onEdit }) => {
             style={{ cursor }}
             id="firstName"
             placeholder="John"
-            value={user.firstName}
+            value={values.firstName}
+            onChange={handleChange}
+            onBlur={handleBlur}
             readOnly={!edit}
           />
+          {errors.firstName && touched.firstName && (
+            <p className="text-danger">{errors.firstName}</p>
+          )}
         </div>
         <div class="mb-3">
-          <label for="lastName" class="form-label">
+          <label htmlFor="lastName" class="form-label">
             Last Name
           </label>
           <input
@@ -68,12 +81,17 @@ const Profile = ({ user, edit, onEdit }) => {
             style={{ cursor }}
             id="lastName"
             placeholder="Doe"
-            value={user.lastName}
+            value={values.lastName}
+            onChange={handleChange}
+            onBlur={handleBlur}
             readOnly={!edit}
           />
+          {errors.lastName && touched.lastName && (
+            <p className="text-danger">{errors.lastName}</p>
+          )}
         </div>
         <div class="mb-4">
-          <label for="email" class="form-label">
+          <label htmlFor="email" class="form-label">
             Email
           </label>
           <input
@@ -82,15 +100,25 @@ const Profile = ({ user, edit, onEdit }) => {
             style={{ cursor }}
             id="email"
             placeholder="name@example.com"
-            value={user.email}
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
             readOnly={!edit}
           />
+          {errors.email && touched.email && (
+            <p className="text-danger">{errors.email}</p>
+          )}
         </div>
 
         {edit && (
-          <button type="submit" className="btn btn-primary btn-lg">
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            handleClick={handleSubmit}
+          >
             Update
-          </button>
+          </Button>
         )}
       </form>
     </div>
