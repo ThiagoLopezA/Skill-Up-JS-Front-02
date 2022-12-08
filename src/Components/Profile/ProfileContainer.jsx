@@ -6,14 +6,21 @@ import Profile from './Profile'
 import HomeroAvatar from '../../assets/homero.png'
 
 const ProfileContainer = () => {
-  const [edit, setEdit] = useState(false)
-  const handleEdit = () => setEdit(true)
-
-  const initialValues = {
+  const [user, setUser] = useState({
     firstName: 'Homero',
     lastName: 'Simpson',
     email: 'homero@mail.com',
     avatar: HomeroAvatar,
+  })
+  const [edit, setEdit] = useState(false)
+
+  const handleEdit = () => setEdit(true)
+
+  const initialValues = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    avatar: user.avatar,
   }
 
   const required = 'required field'
@@ -24,9 +31,7 @@ const ProfileContainer = () => {
     avatar: Yup.string().required(required),
   })
 
-  const onSubmit = values => {
-    console.log(values)
-  }
+  const onSubmit = values => setUser(values)
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit })
 

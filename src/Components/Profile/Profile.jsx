@@ -3,8 +3,21 @@ import Button from '../Button/Button'
 const Profile = ({ formik, edit, onEdit }) => {
   const cursor = edit ? 'text' : 'no-drop'
 
-  const { values, handleChange, errors, touched, handleBlur, handleSubmit } =
-    formik
+  const {
+    values,
+    handleChange,
+    errors,
+    touched,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+    isValid,
+  } = formik
+
+  const handleAvatar = e => {
+    const file = e.target.files[0]
+    setFieldValue('avatar', URL.createObjectURL(file))
+  }
 
   return (
     <div className="container pt-5">
@@ -48,7 +61,7 @@ const Profile = ({ formik, edit, onEdit }) => {
               type="file"
               class="form-control-file ms-3"
               id="avatar"
-              onChange={handleChange}
+              onChange={handleAvatar}
             />
           )}
         </div>
@@ -110,12 +123,15 @@ const Profile = ({ formik, edit, onEdit }) => {
           )}
         </div>
 
+        {/* CHANGE PASSWORD */}
+
         {edit && (
           <Button
             type="submit"
             variant="primary"
             size="lg"
             handleClick={handleSubmit}
+            disabled={!isValid}
           >
             Update
           </Button>
