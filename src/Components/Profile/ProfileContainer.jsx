@@ -1,11 +1,12 @@
 import Profile from './Profile'
+import HomeroAvatar from '../../assets/homero.png'
 
 const ProfileContainer = () => {
   const user = {
     firstName: 'Homero',
     lastName: 'Simpson',
     email: 'homero@mail.com',
-    avatar: '1.img',
+    avatar: HomeroAvatar,
     password: 'Hola1234',
     roleId: 1,
   }
