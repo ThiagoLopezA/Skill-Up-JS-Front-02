@@ -7,7 +7,7 @@ import ProtectedRoutes from '../Components/ProtectedRoutes/ProtectedRoutes'
 
 const AppRoutes = () => (
   <Routes>
-    <Route element={<ProtectedRoutes />}>
+    <Route element={<ProtectedRoutes redirectPath="/login" />}>
       <Route path="/" element={<Home />} />
       <Route path="/transactions" element={<Transactions />} />
     </Route>
