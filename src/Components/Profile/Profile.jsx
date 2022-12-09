@@ -1,4 +1,5 @@
 import Button from '../Button/Button'
+import InputField from '../InputField/InputField'
 
 const Profile = ({ formik, edit, onEdit }) => {
   const cursor = edit ? 'text' : 'no-drop'
@@ -60,6 +61,7 @@ const Profile = ({ formik, edit, onEdit }) => {
             <input
               type="file"
               class="form-control-file ms-3"
+              name="avatar"
               id="avatar"
               onChange={handleAvatar}
             />
@@ -69,58 +71,37 @@ const Profile = ({ formik, edit, onEdit }) => {
           <label htmlFor="firstName" class="form-label">
             First Name
           </label>
-          <input
+          <InputField
             type="text"
-            class="form-control"
-            style={{ cursor }}
-            id="firstName"
+            name="firstName"
             placeholder="John"
-            value={values.firstName}
-            onChange={handleChange}
-            onBlur={handleBlur}
+            formik={formik}
             readOnly={!edit}
           />
-          {errors.firstName && touched.firstName && (
-            <p className="text-danger">{errors.firstName}</p>
-          )}
         </div>
         <div class="mb-3">
           <label htmlFor="lastName" class="form-label">
             Last Name
           </label>
-          <input
+          <InputField
             type="text"
-            class="form-control"
-            style={{ cursor }}
-            id="lastName"
+            name="lastName"
             placeholder="Doe"
-            value={values.lastName}
-            onChange={handleChange}
-            onBlur={handleBlur}
+            formik={formik}
             readOnly={!edit}
           />
-          {errors.lastName && touched.lastName && (
-            <p className="text-danger">{errors.lastName}</p>
-          )}
         </div>
         <div class="mb-4">
           <label htmlFor="email" class="form-label">
             Email
           </label>
-          <input
-            type="email"
-            class="form-control"
-            style={{ cursor }}
-            id="email"
+          <InputField
+            type="text"
+            name="email"
             placeholder="name@example.com"
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
+            formik={formik}
             readOnly={!edit}
           />
-          {errors.email && touched.email && (
-            <p className="text-danger">{errors.email}</p>
-          )}
         </div>
 
         {/* CHANGE PASSWORD */}
