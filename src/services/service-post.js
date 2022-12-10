@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import.meta.env.VITE_API
+//const {token} = JSON.parse(localStorage.getItem('token'))
 
 
 export function requestPost (token, path, data) {
