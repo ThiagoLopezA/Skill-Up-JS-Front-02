@@ -1,23 +1,25 @@
 import Button from '../Button/Button'
 import InputField from '../InputField/InputField'
+import alerts from '../../services/alerts'
 
 const Profile = ({ formik, edit, onEdit }) => {
-  const cursor = edit ? 'text' : 'no-drop'
-
-  const {
-    values,
-    handleChange,
-    errors,
-    touched,
-    handleBlur,
-    handleSubmit,
-    setFieldValue,
-    isValid,
-  } = formik
+  const { values, handleSubmit, setFieldValue, isValid } = formik
 
   const handleAvatar = e => {
     const file = e.target.files[0]
     setFieldValue('avatar', URL.createObjectURL(file))
+  }
+
+  const handleDelete = async () => {
+    try {
+      const response = await alerts.questionAlert(
+        '¿Estás seguro que quieres eliminar tu cuenta?',
+        'Una vez confirmado no se podrá revertir'
+      )
+      if (response.isConfirmed) console.log('DELETE PROFILE')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -40,7 +42,7 @@ const Profile = ({ formik, edit, onEdit }) => {
             type="button"
             variant="danger"
             size="lg"
-            handleClick={() => {}}
+            handleClick={handleDelete}
           >
             Delete
           </Button>
