@@ -76,6 +76,6 @@
 
 @media (min-width: 768px){
    .topbar{
-    border-bottom: 1px red solid;
+        box-shadow: rgba(231, 238, 255, 0.5) 0px 8px 20px 0px;
    }
 }

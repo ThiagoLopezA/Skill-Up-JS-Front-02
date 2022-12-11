@@ -5,10 +5,15 @@ import Topbar from "./components/Topbar/Topbar";
 
 export default function ClientLayout({ children }) {
   return (
-    <>
-      <Topbar />
-      {/* <AsideNavbar /> */}
-    </>
+    <div className="row d-flex flex-row">
+      <div className="d-none d-md-flex col-md-2 p-0">
+        <AsideNavbar />
+      </div>
+      <div className="col-12 col-md-10 p-0">
+        <Topbar />
+        <div className="container-fluid">{children}</div>
+      </div>
+    </div>
     // <nav className="navbar navbar-expand-lg bg-light">
     //   <div className="container-fluid">
     //     <a className="navbar-brand" href="#">
