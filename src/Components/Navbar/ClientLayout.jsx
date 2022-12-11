@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AsideNavbar from "./components/AsideNavbar";
-import Topbar from "./components/Topbar"
+import Topbar from "./components/Topbar";
 
 export default function ClientLayout({ children }) {
   return (
     <>
-    <Topbar/>
-    <AsideNavbar/>
+      <Topbar />
+      {/* <AsideNavbar /> */}
     </>
     // <nav className="navbar navbar-expand-lg bg-light">
     //   <div className="container-fluid">
