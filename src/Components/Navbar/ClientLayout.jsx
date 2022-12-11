@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AsideNavbar from "./components/AsideNavbar";
-import Topbar from "./components/Topbar";
+import AsideNavbar from "./components/AsideNavbar/AsideNavbar";
+import Topbar from "./components/Topbar/Topbar";
 
 export default function ClientLayout({ children }) {
   return (
