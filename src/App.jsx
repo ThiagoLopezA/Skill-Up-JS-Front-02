@@ -2,13 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import AppRoutes from "./routes";
 import Footer from "./Components/Footer/Footer";
-import NavbarContainer from "./Components/Navbar/NavbarContainer";
+import ClientLayout from "./Components/Navbar/ClientLayout";
 
 function App() {
   return (
     <Router>
-      <NavbarContainer />
-      <AppRoutes />
+      <ClientLayout>
+        <AppRoutes />
+      </ClientLayout>
       <Footer />
     </Router>
   );
