@@ -65,7 +65,7 @@ export default function  UserRegistrationForm () {
               <Field type="password" name="confirmPassword" className="form-control" />
               <ErrorMessage name="confirmPassword" component="div" className="alert alert-danger" />
             </div>
-            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+            <button type="submit" className="btn btn-primary mt-3" disabled={isSubmitting}>
               Sign Up
             </button>
           </Form>
