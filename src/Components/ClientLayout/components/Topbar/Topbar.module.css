@@ -2,6 +2,7 @@
 .topbar{
     padding: 1rem;
     background: #fff;
+    width: 100%;
 }
 .brand{
     font-family: 'Quicksand';
@@ -17,12 +18,13 @@
 }
 .menu{
     width: 45vw;
-    height: 100vh;
+    height: 100%;
     background-color: #fff;
     box-shadow: rgb(231 238 255 / 50%) 10px 0px 31px 0px;
     z-index: 5;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 .icon_button{
     background-color: rgba(0,0,0,0);
@@ -55,6 +57,7 @@
     align-items: center;
     width: 4rem;
     height: 4rem;
+    padding: 1rem;
     border-radius: 50%;
     color: #3564FD;
     font-size: 1.5rem;
