@@ -1,52 +1,54 @@
+import { useEffect } from 'react'
+import { useState } from 'react'
 import DashboardTable from './DashboardTable'
 
-const userFields = {
-  ID: 'id',
-  'First name': 'firstName',
-  'Last name': 'lastName',
-  Email: 'email',
-  Avatar: 'avatar',
-  'Role ID': 'roleId',
-  'Created At': 'createdAt',
-  'Updated At': 'updatedAt',
+const userFields = [
+  { column: 'ID', apiFieldName: 'id' },
+  { column: 'First name', apiFieldName: 'firstName' },
+  { column: 'Last name', apiFieldName: 'lastName' },
+  { column: 'Email', apiFieldName: 'email' },
+  { column: 'Avatar', apiFieldName: 'avatar' },
+  { column: 'Role', apiFieldName: 'roleId' },
+  { column: 'Created At', apiFieldName: 'createdAt' },
+  { column: 'Updated At', apiFieldName: 'updatedAt' },
+]
+
+const transactionFields = [
+  { column: 'ID', apiFieldName: 'id' },
+  { column: 'Description', apiFieldName: 'description' },
+  { column: 'Amount', apiFieldName: 'amount' },
+  { column: 'User ID', apiFieldName: 'userId' },
+  { column: 'Category', apiFieldName: 'categoryId' },
+  { column: 'Date', apiFieldName: 'date' },
+]
+
+const categorieFields = [
+  { column: 'ID', apiFieldName: 'id' },
+  { column: 'Name', apiFieldName: 'name' },
+  { column: 'Description', apiFieldName: 'description' },
+]
+
+const fields = {
+  users: userFields,
+  categories: categorieFields,
+  transactions: transactionFields,
 }
 
-const transactionFields = {
-  ID: 'id',
-  Description: 'description',
-  Amount: 'amount',
-  'User ID': 'userId',
-  Category: 'categoryId',
-  Date: 'date',
-}
+// tableName = users | transactions | categories
+const DashboardTableContainer = ({ tableName, data, setTableTo }) => {
+  const [option, setOption] = useState(tableName)
+  const handleOption = e => setOption(e.target.value)
 
-const categorieFields = {
-  ID: 'id',
-  Name: 'name',
-  Description: 'description',
-}
+  useEffect(() => {
+    setTableTo[option]()
+  }, [option])
 
-const config = {
-  users: {
-    title: 'Users',
-    fields: userFields,
-  },
-  categories: {
-    title: 'Categories',
-    fields: categorieFields,
-  },
-  transactions: {
-    title: 'Transactions',
-    fields: transactionFields,
-  },
-}
-
-const DashboardTableContainer = ({ name, data }) => {
   return (
     <DashboardTable
-      title={config[name].title}
-      fields={config[name].fields}
+      tableName={option}
+      columns={fields[tableName]}
       data={data}
+      onChangeOption={handleOption}
     />
   )
 }

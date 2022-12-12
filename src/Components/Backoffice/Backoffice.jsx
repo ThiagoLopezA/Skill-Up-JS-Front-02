@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useState } from 'react'
 import DashboardTableContainer from '../Tables/DashboardTableContainer'
 
 const TotalCard = ({ title, total, style }) => {
@@ -15,6 +17,18 @@ const TotalCard = ({ title, total, style }) => {
 }
 
 const Backoffice = ({ users, transactions, categories }) => {
+  const [table, setTable] = useState({ name: 'users', data: [] })
+
+  const setTableTo = {
+    users: () => setTable({ name: 'users', data: users }),
+    transactions: () => setTable({ name: 'transactions', data: transactions }),
+    categories: () => setTable({ name: 'categories', data: categories }),
+  }
+
+  useEffect(() => {
+    setTable({ name: 'users', data: users })
+  }, [users])
+
   return (
     <div className="container py-5">
       <h1>Backoffice</h1>
@@ -39,7 +53,11 @@ const Backoffice = ({ users, transactions, categories }) => {
 
       <div class="row py-5">
         <div class="col-md-12 mb-3">
-          <DashboardTableContainer name="users" data={users} />
+          <DashboardTableContainer
+            tableName={table.name}
+            data={table.data}
+            setTableTo={setTableTo}
+          />
         </div>
       </div>
     </div>
