@@ -10,7 +10,7 @@ const httpRequest = (method, endpoint, data, headers = {}) => {
 
   config.method = method;
 
-  config.url = import.meta.env.URL_API + endpoint;
+  config.url = import.meta.env.VITE_API_URL + endpoint;
   
   if (data) config.data = data;
 
