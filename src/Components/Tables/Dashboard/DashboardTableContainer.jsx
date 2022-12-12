@@ -8,9 +8,14 @@ const userFields = [
   { column: 'Last name', apiFieldName: 'lastName' },
   { column: 'Email', apiFieldName: 'email' },
   { column: 'Avatar', apiFieldName: 'avatar' },
-  { column: 'Role', apiFieldName: 'roleId' },
   { column: 'Created At', apiFieldName: 'createdAt' },
   { column: 'Updated At', apiFieldName: 'updatedAt' },
+  {
+    column: 'Role',
+    apiFieldName: 'roleId',
+    isEditable: true,
+    options: [1, 2, 3],
+  },
 ]
 
 const transactionFields = [
@@ -25,7 +30,12 @@ const transactionFields = [
 const categorieFields = [
   { column: 'ID', apiFieldName: 'id' },
   { column: 'Name', apiFieldName: 'name' },
-  { column: 'Description', apiFieldName: 'description' },
+  {
+    column: 'Description',
+    apiFieldName: 'description',
+    isEditable: true,
+    options: [],
+  },
 ]
 
 const fields = {
@@ -37,7 +47,8 @@ const fields = {
 // tableName = users | transactions | categories
 const DashboardTableContainer = ({ tableName, data, setTableTo }) => {
   const [option, setOption] = useState(tableName)
-  const handleOption = e => setOption(e.target.value)
+
+  const handleOption = op => setOption(op)
 
   useEffect(() => {
     setTableTo[option]()
@@ -48,7 +59,7 @@ const DashboardTableContainer = ({ tableName, data, setTableTo }) => {
       tableName={option}
       columns={fields[tableName]}
       data={data}
-      onChangeOption={handleOption}
+      onChangeTable={handleOption}
     />
   )
 }

@@ -1,15 +1,29 @@
-const TableRow = ({ apiFields, rowData }) => (
-  <tr>
-    {apiFields.map(key => (
-      <td key={key}>{rowData[key]}</td>
-    ))}
-  </tr>
-)
+import { FieldSelect, FieldInput, FieldItem } from './DashboardFields'
 
-const DashboardTable = ({ tableName, columns, data, onChangeOption }) => {
-  const cols = columns.map(field => field.column)
-  const apiFields = columns.map(field => field.apiFieldName)
+const TableRow = ({ cols, rowData }) => {
+  return (
+    <tr>
+      {cols.map(field => {
+        const { isEditable, options, apiFieldName, column } = field
 
+        if (isEditable)
+          return (
+            <td key={column}>
+              {options.length > 0 ? (
+                <FieldSelect value={rowData[apiFieldName]} options={options} />
+              ) : (
+                <FieldInput value={rowData[apiFieldName]} />
+              )}
+            </td>
+          )
+
+        return <FieldItem key={column} value={rowData[apiFieldName]} />
+      })}
+    </tr>
+  )
+}
+
+const DashboardTable = ({ tableName, columns, data, onChangeTable }) => {
   return (
     <div class="card">
       <div class="card-header d-flex gap-2 align-datas-center justify-content-between">
@@ -21,7 +35,7 @@ const DashboardTable = ({ tableName, columns, data, onChangeOption }) => {
             value={tableName}
             class="form-select"
             style={{ width: 'fit-content' }}
-            onChange={onChangeOption}
+            onChange={e => onChangeTable(e.target.value)}
           >
             <option value="users">Users table</option>
             <option value="transactions">Transactions table</option>
@@ -39,19 +53,19 @@ const DashboardTable = ({ tableName, columns, data, onChangeOption }) => {
           >
             <thead>
               <tr>
-                {cols.map(column => (
+                {columns.map(({ column }) => (
                   <th key={column}>{column}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {data.map(item => (
-                <TableRow key={item.id} apiFields={apiFields} rowData={item} />
+                <TableRow key={item.id} cols={columns} rowData={item} />
               ))}
             </tbody>
             <tfoot>
               <tr>
-                {cols.map(column => (
+                {columns.map(({ column }) => (
                   <th key={column}>{column}</th>
                 ))}
               </tr>

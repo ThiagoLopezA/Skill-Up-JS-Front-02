@@ -5,7 +5,7 @@ import '../App.css'
 
 import Home from '../Components/Home'
 import Transactions from '../Components/Transactions/Transactions'
-import { BackofficeContainer } from '../Components/Backoffice/BackofficeContainer'
+import BackofficeContainer from '../Components/Backoffice/BackofficeContainer'
 
 const AppRoutes = () => (
   <Routes>
