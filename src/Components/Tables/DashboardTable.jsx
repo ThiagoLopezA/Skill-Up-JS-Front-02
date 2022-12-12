@@ -1,15 +1,13 @@
 const TableRow = ({ fields, item }) => (
   <tr>
     {fields.map(field => (
-      <td>{item[field]}</td>
+      <td key={field}>{item[field]}</td>
     ))}
   </tr>
 )
 
 const DashboardTable = ({ title, fields, data }) => {
-  console.log(data)
-
-  const fieldsKeys = Object.keys(fields)
+  const fieldsHeaders = Object.keys(fields)
   const fieldsValues = Object.values(fields)
 
   return (
@@ -30,26 +28,25 @@ const DashboardTable = ({ title, fields, data }) => {
           >
             <thead>
               <tr>
-                {fieldsKeys.length > 0 &&
-                  fieldsKeys.map(field => <th key={field}>{field}</th>)}
+                {fieldsHeaders.length > 0 &&
+                  fieldsHeaders.map(field => <th key={field}>{field}</th>)}
               </tr>
             </thead>
             <tbody>
               {data.length > 0 &&
                 data.map(item => (
-                  <TableRow item={item} fields={fieldsValues} />
+                  <TableRow key={item.id} fields={fieldsValues} item={item} />
                 ))}
             </tbody>
             <tfoot>
               <tr>
-                {fieldsKeys.length > 0 &&
-                  fieldsKeys.map(field => <th key={field}>{field}</th>)}
+                {fieldsHeaders.length > 0 &&
+                  fieldsHeaders.map(field => <th key={field}>{field}</th>)}
               </tr>
             </tfoot>
           </table>
         </div>
       </div>
-      {/* <UsersTable users={users} /> */}
     </div>
   )
 }

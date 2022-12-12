@@ -1,6 +1,6 @@
 import DashboardTable from './DashboardTable'
 
-const usersFields = {
+const userFields = {
   ID: 'id',
   'First name': 'firstName',
   'Last name': 'lastName',
@@ -11,7 +11,7 @@ const usersFields = {
   'Updated At': 'updatedAt',
 }
 
-const transactionsFields = {
+const transactionFields = {
   ID: 'id',
   Description: 'description',
   Amount: 'amount',
@@ -20,36 +20,35 @@ const transactionsFields = {
   Date: 'date',
 }
 
-const categoriesFields = {
+const categorieFields = {
   ID: 'id',
   Name: 'name',
   Description: 'description',
 }
 
-// name = 'users' | 'transactions' | 'categories'
+const config = {
+  users: {
+    title: 'Users',
+    fields: userFields,
+  },
+  categories: {
+    title: 'Categories',
+    fields: categorieFields,
+  },
+  transactions: {
+    title: 'Transactions',
+    fields: transactionFields,
+  },
+}
+
 const DashboardTableContainer = ({ name, data }) => {
-  if (name === 'users')
-    return <DashboardTable title="Users" fields={usersFields} data={data} />
-
-  if (name === 'transactions')
-    return (
-      <DashboardTable
-        title="Transactions"
-        fields={transactionsFields}
-        data={data}
-      />
-    )
-
-  if (name === 'categories')
-    return (
-      <DashboardTable
-        title="Categories"
-        fields={categoriesFields}
-        data={data}
-      />
-    )
-
-  return <h2>No data</h2>
+  return (
+    <DashboardTable
+      title={config[name].title}
+      fields={config[name].fields}
+      data={data}
+    />
+  )
 }
 
 export default DashboardTableContainer
