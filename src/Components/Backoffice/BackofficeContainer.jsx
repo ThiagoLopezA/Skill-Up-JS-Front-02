@@ -13,63 +13,38 @@ export const BackofficeContainer = () => {
     categories: [],
   })
 
-  const fetchUsers = async () => {
+  const getAdminData = async () => {
+    const config = {
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    }
+
     try {
-      const config = {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-      }
+      const getUsers = axios.get(`${API_URL}/users`, config)
+      const getTransactions = axios.get(`${API_URL}/transactions`, config)
+      const getCategories = axios.get(`${API_URL}/categories`, config)
 
-      const { data } = await axios.get(`${API_URL}/users`, config)
+      const [users, transactions, categories] = await Promise.all([
+        getUsers,
+        getTransactions,
+        getCategories,
+      ])
 
-      const encryptedUsers = data.body?.encrypted
-      if (encryptedUsers)
-        setAdminData(prev => ({
-          ...prev,
+      const encryptedUsers = users.data.body?.encrypted
+      const encryptedTransactions = transactions.data.body?.encrypted
+
+      if (encryptedUsers && encryptedTransactions)
+        return setAdminData({
           users: jwt_decode(encryptedUsers).users,
-        }))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  const fetchTransactions = async () => {
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-      }
-      const { data } = await axios.get(`${API_URL}/transactions`, config)
-
-      const encryptedTransactions = data.body?.encrypted
-      if (encryptedTransactions)
-        setAdminData(prev => ({
-          ...prev,
           transactions: jwt_decode(encryptedTransactions).response,
-        }))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  const fetchCategories = async () => {
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-      }
-      const { data } = await axios.get(`${API_URL}/categories`, config)
-
-      setAdminData(prev => ({
-        ...prev,
-        categories: data.body,
-      }))
+          categories: categories.data.body,
+        })
     } catch (err) {
       console.log(err)
     }
   }
 
   useEffect(() => {
-    fetchUsers()
-    fetchTransactions()
-    fetchCategories()
+    getAdminData()
   }, [])
 
   return (
