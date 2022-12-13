@@ -35,6 +35,7 @@ export const userSlice = createSlice({
   initialState: {
     user: null,
     token: null,
+    error: null,
   },
   reducers: {
     logout: (state) => {
@@ -75,4 +76,5 @@ export const userSlice = createSlice({
 
 export const { logout } = userSlice.actions;
 
-export default userSlice.reducer;
+const { reducer } = userSlice;
+export default reducer;
