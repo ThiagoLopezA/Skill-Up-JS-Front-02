@@ -1,0 +1,29 @@
+.wrapper{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.7rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #001a61;
+}
+.footerTitle{
+    color: #f3f3f3;
+    font-size: 1rem;
+    margin: 0;
+}
+.separate{
+    width: 1px;
+    height: 2.2rem;
+    background-color: #fff;
+    margin: 0 1rem;
+}
+.appStoreIcon{
+    color: #fff;
+}
+.appIcons{
+    display: flex;
+    align-items: center;
+}
