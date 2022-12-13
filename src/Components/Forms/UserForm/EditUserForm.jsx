@@ -1,125 +1,37 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import UserForm from "./UserForm";
 
 export default function ({user}) {
   return (
     <div className="container">
       <h1>Edit User</h1>
-      <Formik
+      <UserForm
         initialValues={{
           firstName: user.firstName || "",
           lastName: user.lastName || "",
           email: user.email || "",
-          actualPassword: "",
+          currentPassword: "",
           newPassword: "",
           confirmNewPassword: ""
         }}
         validationSchema={Yup.object({
           firstName: Yup.string()
-            .max(15, "Must be 15 characters or less")
-            .required("Required"),
+            .max(15, "Must be 15 characters or less"),
           lastName: Yup.string()
-            .max(20, "Must be 20 characters or less")
-            .required("Required"),
+            .max(20, "Must be 20 characters or less"),
           email: Yup.string()
-            .email("Invalid email address")
-            .required("Required"),
-          actualPassword: Yup.string()
-            .min(8, "Password must be at least 8 characters")
-            .required("Required"),
+            .email("Invalid email address"),
+          currentPassword: Yup.string()
+            .min(8, "Password must be at least 8 characters"),
           newPassword: Yup.string()
-            .min(8, "Password must be at least 8 characters")
-            .required("Required"),
+            .min(8, "Password must be at least 8 characters"),
           confirmNewPassword: Yup.string()
-            .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
-            .required("Required"),
+            .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
+        action="edit"
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <Field type="text" name="firstName" className="form-control" />
-              <ErrorMessage
-                name="firstName"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <Field type="text" name="lastName" className="form-control" />
-              <ErrorMessage
-                name="lastName"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <Field type="email" name="email" className="form-control" />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="actualPassword">Actual Password</label>
-              <Field
-                type="password"
-                name="actualPassword"
-                className="form-control"
-              />
-              <ErrorMessage
-                name="actualPassword"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="newPassword">New Password</label>
-              <Field
-                type="password"
-                name="newPassword"
-                className="form-control"
-              />
-              <ErrorMessage
-                name="newPassword"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirmNewPassword">Confirm New Password</label>
-              <Field
-                type="password"
-                name="confirmNewPassword"
-                className="form-control"
-              />
-              <ErrorMessage
-                name="confirmNewPassword"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary mt-3"
-              disabled={isSubmitting}
-            >
-              Send
-            </button>
-          </Form>
-        )}
-      </Formik>
+      </UserForm>
     </div>
   );
 }
