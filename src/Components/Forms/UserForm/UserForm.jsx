@@ -1,119 +1,62 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
+import InputField from "../../InputField/InputField";
+import Button from "../../Button/Button";
 
-export default function UserForm({ initialValues, validationSchema, action }) {
+export default function UserForm({
+  initialValues,
+  validationSchema,
+  onSubmit,
+  action,
+}) {
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+  const isRegister = action === "register" ? "password" : "currentPassword";
+  const isRegisterPlaceholder =
+    action === "register" ? "Contraseña" : "Contraseña actual";
+  const isConfirm =
+    action === "register" ? "confirmPassword" : "confirmNewPassword";
+  const isConfirmPlaceholder =
+    action === "register"
+      ? "Confirmar contraseña"
+      : "Confirmar nueva contraseña";
+
   return (
-    <div className="container">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <Field type="text" name="firstName" className="form-control" />
-              <ErrorMessage
-                name="firstName"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
-              <Field type="text" name="lastName" className="form-control" />
-              <ErrorMessage
-                name="lastName"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <Field type="email" name="email" className="form-control" />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                htmlFor={action === "register" ? "password" : "currentPassword"}
-              >
-                {action === "register" ? "Password" : "Current password"}
-              </label>
-              <Field
-                type="password"
-                name={action === "register" ? "password" : "currentPassword"}
-                className="form-control"
-              />
-              <ErrorMessage
-                name={action === "register" ? "password" : "currentPassword"}
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group" style={{display: action==="register" ? 'none' : 'block' }}>
-              <label htmlFor="newPassword">New Password</label>
-              <Field
-                type="password"
-                name="newPassword"
-                className="form-control"
-              />
-              <ErrorMessage
-                name="newPassword"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <div className="form-group">
-              <label
-                htmlFor={
-                  action === "register"
-                    ? "confirmPassword"
-                    : "confirmNewPassword"
-                }
-              >
-                {action === "register"
-                  ? "Confirm password"
-                  : "Confirm new password"}
-              </label>
-              <Field
-                type="password"
-                name={
-                  action === "register"
-                    ? "confirmPassword"
-                    : "confirmNewPassword"
-                }
-                className="form-control"
-              />
-              <ErrorMessage
-                name={
-                  action === "register"
-                    ? "confirmPassword"
-                    : "confirmNewPassword"
-                }
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary mt-3"
-              disabled={isSubmitting}
-            >
-              {action === "register" ? "Sign Up" : "Send"}
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+    <form onSubmit={formik.handleSubmit}>
+      <InputField name="firstName" placeholder="Nombre" formik={formik} />
+      <InputField name="lastName" placeholder="Apellido" formik={formik} />
+      <InputField
+        name="email"
+        type="email"
+        placeholder="Email"
+        formik={formik}
+      />
+      <InputField
+        name={isRegister}
+        type="password"
+        placeholder={isRegisterPlaceholder}
+        formik={formik}
+      />
+      {action === "register" && (
+        <InputField
+          name="newPassword"
+          type="password"
+          placeholder="Nueva contraseña"
+          formik={formik}
+        />
+      )}
+      <InputField
+        name={isConfirm}
+        type="password"
+        placeholder={isConfirmPlaceholder}
+        formik={formik}
+      />
+      <Button type="submit" variant="primary">
+        {action === "register" ? "Registrar" : "Enviar"}
+      </Button>
+    </form>
   );
 }

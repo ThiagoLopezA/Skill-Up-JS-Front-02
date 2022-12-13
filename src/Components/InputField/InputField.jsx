@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./InputField.module.css";
 
-export default function InputField({ formik, name, placeholder, type }) {
+export default function InputField({
+  formik,
+  name,
+  placeholder,
+  type = "text",
+}) {
   return (
     <>
       <input
