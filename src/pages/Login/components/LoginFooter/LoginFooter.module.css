@@ -1,0 +1,25 @@
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.3rem 2rem;
+    display: flex;
+    justify-content: center;
+    background-color: #f9f9ff;
+}
+.footerTitle{
+    font-weight: 600;
+    color: rgb(58, 58, 58);
+    font-weight: 600;
+    font-size: 1rem;
+}
+.footerText{
+    color: rgb(58, 58, 58);
+    font-size: .85rem;
+    margin: 0;
+}
+.icon{
+    color: #3564FD;
+    margin-right: 1rem;
+}
