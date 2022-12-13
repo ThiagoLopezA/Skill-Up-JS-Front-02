@@ -6,6 +6,10 @@ import Backoffice from './Backoffice'
 const API_URL = import.meta.env.VITE_API_URL
 const API_KEY = import.meta.env.VITE_API_KEY
 
+const config = {
+  headers: { Authorization: `Bearer ${API_KEY}` },
+}
+
 const BackofficeContainer = () => {
   const [adminData, setAdminData] = useState({
     users: [],
@@ -14,10 +18,6 @@ const BackofficeContainer = () => {
   })
 
   const getAdminData = async () => {
-    const config = {
-      headers: { Authorization: `Bearer ${API_KEY}` },
-    }
-
     try {
       const getUsers = axios.get(`${API_URL}/users`, config)
       const getTransactions = axios.get(`${API_URL}/transactions`, config)
@@ -32,12 +32,11 @@ const BackofficeContainer = () => {
       const encryptedUsers = users.data.body?.encrypted
       const encryptedTransactions = transactions.data.body?.encrypted
 
-      if (encryptedUsers && encryptedTransactions)
-        return setAdminData({
-          users: jwt_decode(encryptedUsers).users,
-          transactions: jwt_decode(encryptedTransactions).response,
-          categories: categories.data.body,
-        })
+      setAdminData({
+        users: jwt_decode(encryptedUsers).users,
+        transactions: jwt_decode(encryptedTransactions).response,
+        categories: categories.data.body,
+      })
     } catch (err) {
       console.log(err)
     }
