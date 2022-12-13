@@ -1,14 +1,7 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { FieldSelect, FieldInput, FieldItem } from './DashboardFields'
 import alerts from '../../../services/alerts'
-
-const API_URL = import.meta.env.VITE_API_URL
-const API_KEY = import.meta.env.VITE_API_KEY
-
-const config = {
-  headers: { Authorization: `Bearer ${API_KEY}` },
-}
+import { putRequest } from '../../../services/httpRequest'
 
 const TableRow = ({ cols, rowData, onAddChange, changes }) => {
   return (
@@ -78,9 +71,7 @@ const DashboardTable = ({ tableName, columns, data, onChangeTable }) => {
   const handleEdit = async () => {
     try {
       const updates = changes.map(change =>
-        axios.put(`${API_URL}/${tableName}/${change.id}`, change, {
-          headers: config.headers,
-        })
+        putRequest(`/${tableName}/${change.id}`, change)
       )
 
       await Promise.all(updates)
