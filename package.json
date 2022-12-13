@@ -24,8 +24,8 @@
     "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.4",
-    "sweetalert2": "^11.6.15",
     "redux-logger": "^3.0.6",
+    "sweetalert2": "^11.4.8",
     "sweetalert2-react-content": "^5.0.7",
     "yup": "^0.32.11"
   },
