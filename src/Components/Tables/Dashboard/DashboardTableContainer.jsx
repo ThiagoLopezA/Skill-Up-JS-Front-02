@@ -11,8 +11,8 @@ const userFields = [
   { column: 'Last name', apiFieldName: 'lastName' },
   { column: 'Email', apiFieldName: 'email' },
   { column: 'Avatar', apiFieldName: 'avatar' },
-  { column: 'Created At', apiFieldName: 'createdAt' },
-  { column: 'Updated At', apiFieldName: 'updatedAt' },
+  { column: 'Created At', apiFieldName: 'createdAt', isDate: true },
+  { column: 'Updated At', apiFieldName: 'updatedAt', isDate: true },
   {
     column: 'Role',
     apiFieldName: 'roleId',
@@ -27,7 +27,7 @@ const transactionFields = [
   { column: 'Amount', apiFieldName: 'amount' },
   { column: 'User ID', apiFieldName: 'userId' },
   { column: 'Category', apiFieldName: 'categoryId' },
-  { column: 'Date', apiFieldName: 'date' },
+  { column: 'Date', apiFieldName: 'date', isDate: true },
 ]
 
 const categorieFields = [
