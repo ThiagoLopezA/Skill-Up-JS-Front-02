@@ -5,8 +5,13 @@ import DashboardTableContainer from '../Tables/Dashboard/DashboardTableContainer
 const TotalCard = ({ title, total, style }) => {
   return (
     <article
-      className={`card bg-${style.bg} text-white text-center`}
-      style={{ maxWidth: 300, width: '100%', height: 200 }}
+      className={`card text-white text-center`}
+      style={{
+        maxWidth: 300,
+        width: '100%',
+        height: 200,
+        backgroundColor: style.bg,
+      }}
     >
       <div className="card-body d-flex flex-column justify-content-center">
         <h3 className="card-title fs-2">{title}</h3>
@@ -31,23 +36,23 @@ const Backoffice = ({ users, transactions, categories, loadData }) => {
 
   return (
     <div className="container py-5">
-      <h1>Backoffice</h1>
+      <h1 style={{ color: '#3a3a3a' }}>Backoffice</h1>
 
       <div className="mt-5 d-flex justify-content-between gap-2">
         <TotalCard
           title="Users"
           total={users.length}
-          style={{ bg: 'primary' }}
+          style={{ bg: '#3564fd' }}
         />
         <TotalCard
           title="Transactions"
           total={transactions.length}
-          style={{ bg: 'warning' }}
+          style={{ bg: '#3a3a3a' }}
         />
         <TotalCard
           title="Categories"
           total={categories.length}
-          style={{ bg: 'info' }}
+          style={{ bg: '#3564fd' }}
         />
       </div>
 
