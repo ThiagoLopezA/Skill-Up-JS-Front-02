@@ -17,10 +17,21 @@
 .primary:hover{
     background-color: #0030B7
 }
+.outlined{
+    background-color: rgba(0, 0, 0, 0);
+    color: #3564FD;
+    border: 1px solid #3564FD;
+}
+.outlined:hover{
+    background-color: rgba(0, 0, 0, 3%);
+}
 .secondary{
     background-color: rgba(0, 0, 0, 0);
     color: #3564FD;
 }
 .secondary:hover{
     background-color: rgba(0, 0, 0, 3%);
+}
+.fullWidth{
+    width: 100%;
 }

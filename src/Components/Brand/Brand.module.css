@@ -1,0 +1,14 @@
+.brand{
+    font-family: 'Quicksand';
+    color: #3564FD;
+    font-weight: 600;
+}
+.sm{
+    font-size: 1.2rem;
+}
+.md{
+    font-size: 1.5rem;
+}
+.xl{
+    font-size: 2.2rem;
+}

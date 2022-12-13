@@ -5,13 +5,14 @@ import Button from "../../Button/Button";
 import InputField from "../../InputField/InputField";
 
 export default function LoginForm() {
+  const required = "Este campo es requerido";
   const initialValues = {
     email: "",
     password: "",
   };
   const validationSchema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
+    email: yup.string().email().required(required),
+    password: yup.string().required(required),
   });
   const onSubmit = values => {};
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -24,14 +25,19 @@ export default function LoginForm() {
         formik={formik}
       />
       <InputField
-        name="email"
+        name="password"
         type="password"
         placeholder="Contraseña"
         formik={formik}
       />
-      <Button type="submit" variant="primary">
-        Iniciar sesión
-      </Button>
+      <div className="actions mt-4">
+        <Button type="submit" variant="primary" size="md" fullWidth>
+          Iniciar sesión
+        </Button>
+        <Button variant="outlined" size="md" fullWidth>
+          Registrarse
+        </Button>
+      </div>
     </form>
   );
 }
