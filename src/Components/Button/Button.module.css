@@ -1,0 +1,26 @@
+.btn{
+    border-radius: 1.5rem;
+    border: none;
+    transition: 200ms;
+    font-weight: 500;
+}
+.sm{
+    padding: 0.2rem 1rem;
+}
+.md{
+    padding: 0.6rem 1rem;
+}
+.primary {
+    background-color: #3564FD;
+    color: #f3f3f3;
+}
+.primary:hover{
+    background-color: #0030B7
+}
+.secondary{
+    background-color: rgba(0, 0, 0, 0);
+    color: #3564FD;
+}
+.secondary:hover{
+    background-color: rgba(0, 0, 0, 3%);
+}
