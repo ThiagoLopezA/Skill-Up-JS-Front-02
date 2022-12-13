@@ -7,14 +7,14 @@ import { putRequest } from '../../../services/httpRequest'
 
 const userFields = [
   { column: 'ID', apiFieldName: 'id' },
-  { column: 'First name', apiFieldName: 'firstName' },
-  { column: 'Last name', apiFieldName: 'lastName' },
+  { column: 'Nombre', apiFieldName: 'firstName' },
+  { column: 'Apellido', apiFieldName: 'lastName' },
   { column: 'Email', apiFieldName: 'email' },
   { column: 'Avatar', apiFieldName: 'avatar' },
-  { column: 'Created At', apiFieldName: 'createdAt', isDate: true },
-  { column: 'Updated At', apiFieldName: 'updatedAt', isDate: true },
+  { column: 'Creado', apiFieldName: 'createdAt', isDate: true },
+  { column: 'Última actualización', apiFieldName: 'updatedAt', isDate: true },
   {
-    column: 'Role',
+    column: 'Rol',
     apiFieldName: 'roleId',
     isEditable: true,
     options: [1, 2, 3],
@@ -23,18 +23,19 @@ const userFields = [
 
 const transactionFields = [
   { column: 'ID', apiFieldName: 'id' },
-  { column: 'Description', apiFieldName: 'description' },
-  { column: 'Amount', apiFieldName: 'amount' },
-  { column: 'User ID', apiFieldName: 'userId' },
-  { column: 'Category', apiFieldName: 'categoryId' },
-  { column: 'Date', apiFieldName: 'date', isDate: true },
+  { column: 'Descripción', apiFieldName: 'description' },
+  { column: 'Monto', apiFieldName: 'amount' },
+  { column: 'Del usuario', apiFieldName: 'userId' },
+  { column: 'Para usuario', apiFieldName: 'toUserId' },
+  { column: 'Categoría', apiFieldName: 'categoryId' },
+  { column: 'Fecha', apiFieldName: 'date', isDate: true },
 ]
 
 const categorieFields = [
   { column: 'ID', apiFieldName: 'id' },
-  { column: 'Name', apiFieldName: 'name' },
+  { column: 'Nombre', apiFieldName: 'name' },
   {
-    column: 'Description',
+    column: 'Descripción',
     apiFieldName: 'description',
     isEditable: true,
     options: [],
