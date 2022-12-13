@@ -31,8 +31,8 @@ const Profile = ({ formik, edit, onEdit }) => {
         <div className="d-flex gap-3">
           <Button
             type="button"
-            variant="warning"
-            size="lg"
+            variant="outlined"
+            size="md"
             handleClick={onEdit}
             disabled={edit}
           >
@@ -40,8 +40,8 @@ const Profile = ({ formik, edit, onEdit }) => {
           </Button>
           <Button
             type="button"
-            variant="danger"
-            size="lg"
+            variant="outlined"
+            size="md"
             handleClick={handleDelete}
           >
             Delete
@@ -112,7 +112,7 @@ const Profile = ({ formik, edit, onEdit }) => {
           <Button
             type="submit"
             variant="primary"
-            size="lg"
+            size="md"
             handleClick={handleSubmit}
             disabled={!isValid}
           >

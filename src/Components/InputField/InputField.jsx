@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './InputField.module.css'
 
 export default function InputField({
   formik,
@@ -14,7 +15,7 @@ export default function InputField({
       <input
         type={type}
         placeholder={placeholder}
-        className={`form-control mb-1 ${
+        className={`form-control ${styles.input} my-3 ${
           formik.touched[name]
             ? Boolean(formik.errors[name])
               ? 'is-invalid'
@@ -30,7 +31,7 @@ export default function InputField({
         readOnly={readOnly}
       />
       {formik.touched[name] && formik.errors[name] && (
-        <div class="invalid-feedback mb-2">{formik.errors[name]}</div>
+        <div className="invalid-feedback mb-2">{formik.errors[name]}</div>
       )}
     </>
   )

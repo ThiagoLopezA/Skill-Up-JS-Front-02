@@ -11,14 +11,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
+    "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.2",
+    "date-fns": "^2.29.3",
     "formik": "^2.2.9",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.4",
-    "sweetalert2": "^11.6.15",
+    "redux-logger": "^3.0.6",
+    "sweetalert2": "^11.4.8",
     "sweetalert2-react-content": "^5.0.7",
     "yup": "^0.32.11"
   },
