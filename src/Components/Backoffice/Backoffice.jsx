@@ -16,7 +16,7 @@ const TotalCard = ({ title, total, style }) => {
   )
 }
 
-const Backoffice = ({ users, transactions, categories }) => {
+const Backoffice = ({ users, transactions, categories, loadData }) => {
   const [table, setTable] = useState({ name: 'users', data: [] })
 
   const setTableTo = {
@@ -26,7 +26,7 @@ const Backoffice = ({ users, transactions, categories }) => {
   }
 
   useEffect(() => {
-    setTable({ name: 'users', data: users })
+    setTableTo.users()
   }, [users])
 
   return (
@@ -57,6 +57,7 @@ const Backoffice = ({ users, transactions, categories }) => {
             tableName={table.name}
             data={table.data}
             setTableTo={setTableTo}
+            loadData={loadData}
           />
         </div>
       </div>

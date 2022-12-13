@@ -1,9 +1,9 @@
-export const FieldSelect = ({ options, value, handleChange }) => (
+export const FieldSelect = ({ options, value, onChange }) => (
   <select
     value={value}
     class="form-select"
     style={{ width: 'fit-content' }}
-    onChange={e => handleChange(e.target.value)}
+    onChange={e => onChange(e.target.value)}
   >
     {options.map(op => (
       <option value={op} key={op}>
@@ -13,14 +13,14 @@ export const FieldSelect = ({ options, value, handleChange }) => (
   </select>
 )
 
-export const FieldInput = ({ value, handleChange }) => (
+export const FieldInput = ({ value, onChange }) => (
   <input
     type="text"
     class="form-control"
     style={{ width: 'fit-content' }}
     value={value}
     placeholder="Edit..."
-    onChange={e => handleChange(e.target.value)}
+    onChange={e => onChange(e.target.value)}
   />
 )
 

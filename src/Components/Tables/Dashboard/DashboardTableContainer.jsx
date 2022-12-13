@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+
 import DashboardTable from './DashboardTable'
+import alerts from '../../../services/alerts'
+import { putRequest } from '../../../services/httpRequest'
 
 const userFields = [
   { column: 'ID', apiFieldName: 'id' },
@@ -45,21 +48,73 @@ const fields = {
 }
 
 // tableName = users | transactions | categories
-const DashboardTableContainer = ({ tableName, data, setTableTo }) => {
-  const [option, setOption] = useState(tableName)
+const DashboardTableContainer = ({ tableName, data, setTableTo, loadData }) => {
+  const [currentTable, setCurrentTable] = useState(tableName)
+  const [changes, setChanges] = useState([])
 
-  const handleOption = op => setOption(op)
+  const resetChanges = () => setChanges([])
+
+  const handleTable = option => {
+    setCurrentTable(option)
+    resetChanges()
+  }
+
+  const handleUpdate = async () => {
+    try {
+      const updates = changes.map(change =>
+        putRequest(`/${tableName}/${change.id}`, change)
+      )
+
+      await Promise.all(updates)
+      alerts.confirmAlert('Actualización exitosa', '')
+
+      await loadData()
+      resetChanges()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleEdit = change => {
+    const userChange = { id: change.id, roleId: change.roleId }
+    const categorieChange = {
+      id: change.id,
+      name: change.name,
+      description: change.description,
+    }
+
+    const newChange = tableName === 'users' ? userChange : categorieChange
+
+    setChanges(prevChanges => {
+      const index = prevChanges.findIndex(item => item.id === change.id)
+
+      if (index !== -1) {
+        const arr = [...prevChanges]
+        arr[index] = newChange
+        return arr
+      }
+
+      return [...prevChanges, newChange]
+    })
+  }
 
   useEffect(() => {
-    setTableTo[option]()
-  }, [option])
+    setTableTo[currentTable]()
+  }, [currentTable])
+
+  useEffect(() => {
+    setCurrentTable(tableName)
+  }, [tableName])
 
   return (
     <DashboardTable
-      tableName={option}
+      tableName={currentTable}
       columns={fields[tableName]}
       data={data}
-      onChangeTable={handleOption}
+      changes={changes}
+      onChangeTable={handleTable}
+      onEdit={handleEdit}
+      onUpdate={handleUpdate}
     />
   )
 }

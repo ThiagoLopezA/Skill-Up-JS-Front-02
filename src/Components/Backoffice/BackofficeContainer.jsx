@@ -10,7 +10,7 @@ const BackofficeContainer = () => {
     categories: [],
   })
 
-  const getAdminData = async () => {
+  const loadAdminData = async () => {
     try {
       const [users, transactions, categories] = await Promise.all([
         getRequest('/users'),
@@ -32,7 +32,7 @@ const BackofficeContainer = () => {
   }
 
   useEffect(() => {
-    getAdminData()
+    loadAdminData()
   }, [])
 
   return (
@@ -40,6 +40,7 @@ const BackofficeContainer = () => {
       users={adminData.users}
       transactions={adminData.transactions}
       categories={adminData.categories}
+      loadData={loadAdminData}
     />
   )
 }
