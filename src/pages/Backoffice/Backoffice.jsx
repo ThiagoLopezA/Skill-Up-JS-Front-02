@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
-import DashboardTableContainer from '../Tables/Dashboard/DashboardTableContainer'
+import DashboardTableContainer from '../../Components/Tables/Dashboard/DashboardTableContainer'
 
 const TotalCard = ({ title, total, style }) => {
   return (
