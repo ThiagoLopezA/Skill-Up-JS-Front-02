@@ -1,26 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useSelector } from 'react-redux'
+import { getUser } from '../../app/authSlice'
 
 import Profile from './Profile'
 import HomeroAvatar from '../../assets/homero.png'
 
 const ProfileContainer = () => {
-  const [user, setUser] = useState({
-    firstName: 'Homero',
-    lastName: 'Simpson',
-    email: 'homero@mail.com',
-    avatar: HomeroAvatar,
-  })
+  const user = useSelector(getUser)
+
   const [edit, setEdit] = useState(false)
 
   const handleEdit = () => setEdit(true)
 
   const initialValues = {
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    avatar: user.avatar,
+    firstName: '',
+    lastName: '',
+    email: '',
+    avatar: '',
   }
 
   const required = 'required field'
@@ -31,9 +29,19 @@ const ProfileContainer = () => {
     avatar: Yup.string().required(required),
   })
 
-  const onSubmit = values => setUser(values)
+  const onSubmit = values => {}
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit })
+
+  useEffect(() => {
+    if (user)
+      formik.setValues({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        avatar: user.avatar ? user.avatar : HomeroAvatar,
+      })
+  }, [user])
 
   return <Profile edit={edit} onEdit={handleEdit} formik={formik} />
 }

@@ -62,15 +62,15 @@ const Profile = ({ formik, edit, onEdit }) => {
           {edit && (
             <input
               type="file"
-              class="form-control-file ms-3"
+              className="form-control-file ms-3"
               name="avatar"
               id="avatar"
               onChange={handleAvatar}
             />
           )}
         </div>
-        <div class="mb-3">
-          <label htmlFor="firstName" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="firstName" className="form-label">
             First Name
           </label>
           <InputField
@@ -81,8 +81,8 @@ const Profile = ({ formik, edit, onEdit }) => {
             readOnly={!edit}
           />
         </div>
-        <div class="mb-3">
-          <label htmlFor="lastName" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="lastName" className="form-label">
             Last Name
           </label>
           <InputField
@@ -93,8 +93,8 @@ const Profile = ({ formik, edit, onEdit }) => {
             readOnly={!edit}
           />
         </div>
-        <div class="mb-4">
-          <label htmlFor="email" class="form-label">
+        <div className="mb-4">
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <InputField

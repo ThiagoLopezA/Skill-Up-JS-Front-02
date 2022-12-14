@@ -56,8 +56,8 @@ const Backoffice = ({ users, transactions, categories, loadData }) => {
         />
       </div>
 
-      <div class="row py-5">
-        <div class="col-md-12 mb-3">
+      <div className="row py-5">
+        <div className="col-md-12 mb-3">
           <DashboardTableContainer
             tableName={table.name}
             data={table.data}
