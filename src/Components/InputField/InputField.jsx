@@ -15,7 +15,7 @@ export default function InputField({
       <input
         type={type}
         placeholder={placeholder}
-        className={`form-control ${styles.input} my-3 ${
+        className={`form-control ${styles.input} my-2 ${
           formik.touched[name]
             ? Boolean(formik.errors[name])
               ? 'is-invalid'

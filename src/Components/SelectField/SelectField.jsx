@@ -6,7 +6,7 @@ export default function SelectField({ children, formik, type, name }) {
       <select
         type={type}
         name={name}
-        className={`form-select mb-1 ${
+        className={`form-select my-2 ${
           formik.touched[name]
             ? Boolean(formik.errors[name])
               ? 'is-invalid'

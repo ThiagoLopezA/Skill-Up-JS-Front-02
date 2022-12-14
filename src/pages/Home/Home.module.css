@@ -1,0 +1,71 @@
+.column{
+    border: 1px solid red
+}
+.row{
+    border: 1px solid blue;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2.5rem;
+}
+.balance{
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.title{
+    font-size: .9rem;
+    color: #212529;
+    font-weight: 500;
+}
+.balanceNumber{
+    font-size: 2rem;
+    font-weight: 100;
+    color: #3564FD;
+}
+.transactions{
+    width: 20rem;
+}
+.transactionsTitle{
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+}
+.chartArea{
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.5rem;
+}
+.chartContainer{
+    height: 13rem;
+    width: 12rem;
+}
+.analisisArea{
+    display: flex;
+    padding-top: 3rem;
+}
+.references{
+    display: flex;
+    align-items: center;
+}
+.box{
+    width: 1rem;
+    height: 1rem;
+    border-radius: .2rem;
+    margin-right: .5rem;
+    
+}
+.incomeColor{
+    background-color:#00C49F ;
+}
+.outcomeColor{
+    background-color: #0088Fe;
+}
+.subtitle{
+    margin: 0;
+    font-size: 0.9rem;
+}
