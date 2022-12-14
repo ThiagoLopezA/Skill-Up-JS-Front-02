@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import Button from "../../../../Button/Button";
-import styles from "./Topbar.module.css";
-import Nav from "../Nav/Nav";
+import React from 'react'
+import Button from '../../../../Button/Button'
+import styles from './Topbar.module.css'
+import Nav from '../Nav/Nav'
 
-import "./AsideActive.css";
+import './AsideActive.css'
 
 export default function Topbar({
   icons,
@@ -30,7 +29,7 @@ export default function Topbar({
             className="rounded-circle"
             width={45}
             height={45}
-            style={{ objectFit: "cover", marginRight: "10px" }}
+            style={{ objectFit: 'cover', marginRight: '10px' }}
             src={user.avatar}
             alt="Avatar"
           />
@@ -48,7 +47,7 @@ export default function Topbar({
 
       {/* HIDDEN/SHOW */}
       <section
-        className={`AsideActive ${menuVisibility ? "active" : ""} d-md-none`}
+        className={`AsideActive ${menuVisibility ? 'active' : ''} d-md-none`}
       >
         <div className={`${styles.menu} pb-4`}>
           <div>
@@ -60,7 +59,7 @@ export default function Topbar({
                 className="rounded-circle"
                 width={45}
                 height={45}
-                style={{ objectFit: "cover", marginRight: "10px" }}
+                style={{ objectFit: 'cover', marginRight: '10px' }}
                 src={user.avatar}
                 alt="Avatar"
               />
@@ -76,5 +75,5 @@ export default function Topbar({
         </div>
       </section>
     </>
-  );
+  )
 }
