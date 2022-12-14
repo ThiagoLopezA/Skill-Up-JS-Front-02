@@ -8,11 +8,21 @@ import BackofficeContainer from '../pages/Backoffice/BackofficeContainer'
 import Transactions from '../Components/Transactions/Transactions'
 import UserRegistrationForm from '../Components/Forms/UserForm/UserRegistrationForm'
 import EditUserForm from '../Components/Forms/UserForm/EditUserForm'
+import ProtectedRoutes from '../Components/ProtectedRoutes/ProtectedRoutes'
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/login" element={<Login />} />
-    <Route element={<ClientLayout />}>
+    <Route
+      element={
+        <ProtectedRoutes
+          protectedEndpoints={['/backoffice']}
+          redirectPath="/login"
+        >
+          <ClientLayout />
+        </ProtectedRoutes>
+      }
+    >
       <Route path="/" element={<Home />} />
       <Route path="/transactions" element={<Transactions />} />
       <Route path="/signup" element={<UserRegistrationForm />} />
