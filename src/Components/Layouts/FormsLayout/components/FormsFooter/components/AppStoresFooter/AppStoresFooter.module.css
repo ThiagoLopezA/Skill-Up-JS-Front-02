@@ -1,13 +1,11 @@
 .wrapper{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     padding: 1.7rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #001a61;
+    height: 100%;
 }
 .footerTitle{
     color: #f3f3f3;

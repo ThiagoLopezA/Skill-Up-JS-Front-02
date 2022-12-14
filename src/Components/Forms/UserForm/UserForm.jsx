@@ -1,7 +1,7 @@
-import React from "react";
-import { useFormik } from "formik";
-import InputField from "../../InputField/InputField";
-import Button from "../../Button/Button";
+import React from 'react'
+import { useFormik } from 'formik'
+import InputField from '../../InputField/InputField'
+import Button from '../../Button/Button'
 
 export default function UserForm({
   initialValues,
@@ -13,16 +13,16 @@ export default function UserForm({
     initialValues,
     validationSchema,
     onSubmit,
-  });
-  const isRegister = action === "register" ? "password" : "currentPassword";
+  })
+  const isRegister = action === 'register' ? 'password' : 'currentPassword'
   const isRegisterPlaceholder =
-    action === "register" ? "Contraseña" : "Contraseña actual";
+    action === 'register' ? 'Contraseña' : 'Contraseña actual'
   const isConfirm =
-    action === "register" ? "confirmPassword" : "confirmNewPassword";
+    action === 'register' ? 'confirmPassword' : 'confirmNewPassword'
   const isConfirmPlaceholder =
-    action === "register"
-      ? "Confirmar contraseña"
-      : "Confirmar nueva contraseña";
+    action === 'register'
+      ? 'Confirmar contraseña'
+      : 'Confirmar nueva contraseña'
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -40,23 +40,23 @@ export default function UserForm({
         placeholder={isRegisterPlaceholder}
         formik={formik}
       />
-      {action === "edit" && (
+      <div className={`${action === 'register' ? 'd-none' : 'd-flex'}`}>
         <InputField
           name="newPassword"
           type="password"
           placeholder="Nueva contraseña"
           formik={formik}
         />
-      )}
+      </div>
       <InputField
         name={isConfirm}
         type="password"
         placeholder={isConfirmPlaceholder}
         formik={formik}
       />
-      <Button type="submit" variant="primary">
-        {action === "register" ? "Registrar" : "Enviar"}
+      <Button type="submit" variant="primary" fullWidth size="md">
+        {action === 'register' ? 'Registrarme' : 'Enviar'}
       </Button>
     </form>
-  );
+  )
 }

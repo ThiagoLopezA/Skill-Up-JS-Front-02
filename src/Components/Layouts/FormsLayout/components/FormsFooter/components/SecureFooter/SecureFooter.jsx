@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./LoginFooter.module.css";
+import styles from "./SecureFooter.module.css";
 export default function LoginFooter() {
   return (
     <div className={styles.footer}>
