@@ -1,5 +1,6 @@
 .content {
   background-color: #fafafa;
+  padding-top: 2rem;
   min-height: 87vh;
   display: flex;
   justify-content: center;
