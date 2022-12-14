@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Button.module.css";
 
 export default function Button({
   handleClick,
@@ -6,14 +7,19 @@ export default function Button({
   type,
   variant,
   size = "sm",
+  fullWidth = false,
 }) {
   return (
     <button
       type={type}
-      class={`btn btn-${variant} btn-${size}`}
+      className={`mb-2 ${styles.btn} ${styles[variant]} ${styles[size]} ${
+        fullWidth ? styles.fullWidth : null
+      }`}
       onClick={handleClick}
     >
       {children}
     </button>
   );
 }
+
+// variant : outlined, primary, secondary
