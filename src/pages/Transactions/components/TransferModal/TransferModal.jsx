@@ -1,14 +1,14 @@
 import React from "react";
 import Modal from "../../../../Components/Modal/Modal";
-import styles from "./IncomeModal.module.css";
-import IncomeTransactionForm from "../../../../Components/Forms/TransactionForm/IncomeTransactionForm";
+import styles from "./TransferModal.module.css";
+import OutcomeTransactionForm from "../../../../Components/Forms/TransactionForm/OutcomeTransactionForm";
 import Button from "../../../../Components/Button/Button";
 
-export default function IncomeModal({ visibility, handleVisibility }) {
+export default function TransferModal({ visibility, handleVisibility }) {
   return (
     <Modal open={visibility} onClose={handleVisibility}>
-      <h2 className={styles.title}>Añadir mas saldo a la cuenta</h2>
-      <IncomeTransactionForm action={handleVisibility} />
+      <h2 className={styles.title}>Transferir a:</h2>
+      <OutcomeTransactionForm action={handleVisibility} />
       <Button
         variant="secondary"
         size="md"

@@ -7,7 +7,7 @@ import Register from "../pages/Register/Register";
 import Home from "../pages/Home/Home";
 import ProfileContainer from "../Components/Profile/ProfileContainer";
 import BackofficeContainer from "../pages/Backoffice/BackofficeContainer";
-import Transactions from "../Components/Transactions/Transactions";
+import Transactions from "../pages/Transactions/Transactions";
 import ProtectedRoutes from "../Components/ProtectedRoutes/ProtectedRoutes";
 import NotFound from "../pages/NotFound";
 
