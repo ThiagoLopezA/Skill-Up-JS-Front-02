@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default function SelectField({ children, formik, type, name }) {
   return (
@@ -9,9 +9,9 @@ export default function SelectField({ children, formik, type, name }) {
         className={`form-select mb-1 ${
           formik.touched[name]
             ? Boolean(formik.errors[name])
-              ? "is-invalid"
-              : "is-valid"
-            : ""
+              ? 'is-invalid'
+              : 'is-valid'
+            : ''
         }`}
         value={formik.values[name]}
         onChange={formik.handleChange}
@@ -19,8 +19,8 @@ export default function SelectField({ children, formik, type, name }) {
         {children}
       </select>
       {formik.touched[name] && formik.errors[name] && (
-        <div class="invalid-feedback mb-2">{formik.errors[name]}</div>
+        <div className="invalid-feedback mb-2">{formik.errors[name]}</div>
       )}
     </>
-  );
+  )
 }

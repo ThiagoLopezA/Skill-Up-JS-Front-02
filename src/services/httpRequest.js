@@ -5,7 +5,7 @@ const httpRequest = (method, endpoint, data, headers = {}) => {
     headers,
   }
 
-  const { token } = JSON.parse(localStorage.getItem('token')) || ''
+  const token = localStorage.getItem('token') || ''
 
   if (token) config.headers.Authorization = `Bearer ${token}`
 

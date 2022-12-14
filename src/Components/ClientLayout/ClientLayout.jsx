@@ -1,8 +1,8 @@
-import React from "react";
-import AsideNavbar from "./components/AsideNavbar/AsideNavbar";
-import Topbar from "./components/Topbar/Topbar";
-import styles from "./ClientLayout.module.css";
-import { Outlet } from "react-router-dom";
+import React from 'react'
+import AsideNavbar from './components/AsideNavbar/AsideNavbar'
+import Topbar from './components/Topbar/Topbar'
+import styles from './ClientLayout.module.css'
+import { Outlet } from 'react-router-dom'
 
 export default function ClientLayout() {
   return (
@@ -25,7 +25,7 @@ export default function ClientLayout() {
     //       Alkybank
     //     </a>
     //     <button
-    //       class="navbar-toggler"
+    //       className="navbar-toggler"
     //       type="button"
     //       data-bs-toggle="collapse"
     //       data-bs-target="#navbarText"
@@ -33,9 +33,9 @@ export default function ClientLayout() {
     //       aria-expanded="false"
     //       aria-label="Toggle navigation"
     //     >
-    //       <span class="navbar-toggler-icon"></span>
+    //       <span className="navbar-toggler-icon"></span>
     //     </button>
-    //     <div class="collapse navbar-collapse" id="navbarText">
+    //     <div className="collapse navbar-collapse" id="navbarText">
     //       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
     //         {elements.map((e, i) => {
     //           return (
@@ -50,5 +50,5 @@ export default function ClientLayout() {
     //     </div>
     //   </div>
     // </nav>
-  );
+  )
 }
