@@ -89,7 +89,7 @@ export default function Home() {
           </div>
         </div>
         <div className={`col-6 ${styles.chartArea} d-none d-md-flex`}>
-          <h2 className={styles.title}>Análisis de gastos</h2>
+          <h2 className={styles.title}>Análisis de cuenta</h2>
           <div className={styles.analisisArea}>
             <div className={styles.chartContainer}>
               <Chart />
