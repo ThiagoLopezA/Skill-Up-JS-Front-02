@@ -2,12 +2,23 @@ import Button from '../Button/Button'
 import InputField from '../InputField/InputField'
 import alerts from '../../services/alerts'
 
+import DefaultAvatar from '../../assets/default-avatar.png'
+
+const API_URL = import.meta.env.VITE_API_URL
+
 const Profile = ({ formik, edit, onEdit }) => {
   const { values, handleSubmit, setFieldValue, isValid } = formik
 
+  const avatar =
+    values.avatar === null
+      ? DefaultAvatar
+      : typeof values.avatar === 'string'
+      ? `${API_URL}/uploads/${values.avatar}`
+      : URL.createObjectURL(values.avatar)
+
   const handleAvatar = e => {
     const file = e.target.files[0]
-    setFieldValue('avatar', URL.createObjectURL(file))
+    setFieldValue('avatar', file)
   }
 
   const handleDelete = async () => {
@@ -56,7 +67,7 @@ const Profile = ({ formik, edit, onEdit }) => {
             width={150}
             height={150}
             style={{ objectFit: 'cover' }}
-            src={values.avatar}
+            src={avatar}
             alt="Avatar"
           />
           {edit && (
