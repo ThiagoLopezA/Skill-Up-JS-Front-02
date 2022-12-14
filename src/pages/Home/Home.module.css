@@ -1,14 +1,7 @@
-.column{
-    border: 1px solid red
-}
-.row{
-    border: 1px solid blue;
-}
 .wrapper{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2.5rem;
 }
 .balance{
     width: 20rem;
@@ -38,7 +31,6 @@
 .chartArea{
     display: flex;
     flex-direction: column;
-    padding-top: 2.5rem;
 }
 .chartContainer{
     height: 13rem;

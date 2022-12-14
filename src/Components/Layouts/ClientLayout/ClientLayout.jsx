@@ -1,8 +1,8 @@
 import React from "react";
 import AsideNavbar from "./components/AsideNavbar/AsideNavbar";
-import Topbar from "./components/Topbar/Topbar";
 import styles from "./ClientLayout.module.css";
 import { Outlet } from "react-router-dom";
+import TopbarContainer from "./components/Topbar/TopbarContainer";
 
 export default function ClientLayout() {
   return (
@@ -12,7 +12,7 @@ export default function ClientLayout() {
           <AsideNavbar />
         </div>
         <div className="col-12 col-md-9 p-0 ">
-          <Topbar />
+          <TopbarContainer />
           <div className={`container-fluid ${styles.content}`}>
             <Outlet />
           </div>
