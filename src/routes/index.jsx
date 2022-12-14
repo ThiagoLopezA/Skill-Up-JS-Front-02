@@ -4,10 +4,13 @@ import { Routes, Route } from 'react-router-dom'
 import ClientLayout from '../Components/ClientLayout/ClientLayout'
 import Login from '../pages/Login/Login'
 import Home from '../pages/Home'
+import ProfileContainer from '../Components/Profile/ProfileContainer'
 import BackofficeContainer from '../pages/Backoffice/BackofficeContainer'
 import Transactions from '../Components/Transactions/Transactions'
 import UserRegistrationForm from '../Components/Forms/UserForm/UserRegistrationForm'
 import EditUserForm from '../Components/Forms/UserForm/EditUserForm'
+import AddCategoryForm from '../Components/Forms/CategoryForms/AddCategoryForm'
+import EditCategoryForm from '../Components/Forms/CategoryForms/EditCategoryForm'
 import NotFound from '../pages/NotFound'
 
 const AppRoutes = () => (
@@ -15,6 +18,7 @@ const AppRoutes = () => (
     <Route path="/login" element={<Login />} />
     <Route element={<ClientLayout />}>
       <Route path="/" element={<Home />} />
+      <Route path="/profile" element={<ProfileContainer />} />
       <Route path="/transactions" element={<Transactions />} />
       <Route path="/signup" element={<UserRegistrationForm />} />
       <Route
@@ -25,6 +29,18 @@ const AppRoutes = () => (
               firstName: 'Pablo',
               lastName: 'Polanco',
               email: 'Pablo_Polanco@mail.com',
+            }}
+          />
+        }
+      />
+      <Route path="/add-category" element={<AddCategoryForm />} />
+      <Route
+        path="/edit-category"
+        element={
+          <EditCategoryForm
+            category={{
+              name: 'Ingresos',
+              description: 'Todos los ingresos del mes',
             }}
           />
         }

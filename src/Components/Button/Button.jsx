@@ -1,12 +1,13 @@
-import React from "react";
-import styles from "./Button.module.css";
+import React from 'react'
+import styles from './Button.module.css'
 
 export default function Button({
   handleClick,
   children,
   type,
   variant,
-  size = "sm",
+  size = 'md',
+  disabled = false,
   fullWidth = false,
 }) {
   return (
@@ -16,10 +17,11 @@ export default function Button({
         fullWidth ? styles.fullWidth : null
       }`}
       onClick={handleClick}
+      disabled={disabled}
     >
       {children}
     </button>
-  );
+  )
 }
 
 // variant : outlined, primary, secondary
