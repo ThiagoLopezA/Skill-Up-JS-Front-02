@@ -1,0 +1,17 @@
+.balance{
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.title{
+    font-size: .9rem;
+    color: #212529;
+    font-weight: 500;
+}
+.balanceNumber{
+    font-size: 2rem;
+    font-weight: 100;
+    color: #3564FD;
+}

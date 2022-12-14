@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Button from "../../Components/Button/Button";
-import Chart from "./components/Chart/Chart";
-import IncomeModal from "./components/IncomeModal/IncomeModal";
-import TransactionContainer from "../../Components/Transaction/TransactionContainer";
-import styles from "./Home.module.css";
-import { useDispatch } from "react-redux";
-import { getUserFromLocalStorage } from "../../app/authSlice";
+import React, { useState } from "react";
+import styles from "./Transactions.module.css";
 import Balance from "../../Components/Balance/Balance";
+import Button from "../../Components/Button/Button";
+import TransactionContainer from "../../Components/Transaction/TransactionContainer";
+import Chart from "./components/Chart/Chart";
+import TransactionModal from "./components/TransferModal/TransferModal";
 
-export default function Home() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUserFromLocalStorage());
-  }, []);
+export default function Transactions() {
   const [visibility, setVisibility] = useState(false);
   const handleVisibility = () => setVisibility(!visibility);
   const transactions = [
@@ -83,7 +77,23 @@ export default function Home() {
     {
       id: 5,
       description: null,
-      amount: "1500.00",
+      amount: 1500.0,
+      date: "2022-12-14T12:37:40.000Z",
+      userId: 23,
+      toUserId: 1,
+      categoryId: 2,
+      createdAt: "2022-12-14T12:37:40.000Z",
+      updatedAt: "2022-12-14T12:37:40.000Z",
+      deletedAt: null,
+      User: {
+        firstName: "Homero",
+        lastName: "Simpson",
+      },
+    },
+    {
+      id: 5,
+      description: null,
+      amount: 17500.0,
       date: "2022-12-14T12:37:40.000Z",
       userId: 23,
       toUserId: 1,
@@ -97,42 +107,31 @@ export default function Home() {
       },
     },
   ];
+  const filtered = transactions.filter(e => e.categoryId === 2);
   return (
     <div className={`container-fluid`}>
       <div className="row">
         <div className={`col-12 col-md-6 ${styles.wrapper}`}>
           <Balance>
             <Button variant="outlined" handleClick={handleVisibility}>
-              Cargar
+              Transferir
             </Button>
           </Balance>
           <div className={`${styles.transactions}`}>
-            <h2 className={`${styles.title}`}>Movimientos</h2>
-            {transactions.map((e, i) => {
+            <h2 className={`${styles.title}`}>Transacciones</h2>
+            {filtered.map((e, i) => {
               return <TransactionContainer transaction={e} key={e + i} />;
             })}
           </div>
         </div>
         <div className={`col-6 ${styles.chartArea} d-none d-md-flex`}>
-          <h2 className={styles.title}>Análisis de cuenta</h2>
-          <div className={styles.analisisArea}>
-            <div className={styles.chartContainer}>
-              <Chart />
-            </div>
-            <div>
-              <div className={styles.references}>
-                <div className={`${styles.box} ${styles.incomeColor}`}></div>
-                <p className={styles.subtitle}>Cargas (50%)</p>
-              </div>
-              <div className={styles.references}>
-                <div className={`${styles.box} ${styles.outcomeColor}`}></div>
-                <p className={styles.subtitle}>Transferencias (50%)</p>
-              </div>
-            </div>
+          <h2 className={styles.title}>Análisis de gastos</h2>
+          <div className={styles.chartContainer}>
+            <Chart data={filtered} />
           </div>
         </div>
       </div>
-      <IncomeModal
+      <TransactionModal
         visibility={visibility}
         handleVisibility={handleVisibility}
       />

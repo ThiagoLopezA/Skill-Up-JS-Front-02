@@ -22,6 +22,13 @@ export default function TransactionForm({
   });
   return (
     <form onSubmit={formik.handleSubmit} className="d-flex flex-column">
+      <div className={`${type === "income" ? "d-none" : "d-inline"}`}>
+        <InputField
+          placeholder="Id del usuario"
+          name="toUserId"
+          formik={formik}
+        />
+      </div>
       <InputField
         type="number"
         placeholder="Cantidad"
@@ -34,13 +41,6 @@ export default function TransactionForm({
         name="description"
         formik={formik}
       />
-      <div className={`${type === "income" ? "d-none" : "d-flex"}`}>
-        <SelectField name="categoryId" type="number" formik={formik}>
-          <option value="">Seleccionar una categoría</option>
-          <option value="1">category A</option>
-          <option value="2">category B</option>
-        </SelectField>
-      </div>
       <Button type="submit" size="md" variant="primary">
         Confirmar
       </Button>
