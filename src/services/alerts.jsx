@@ -1,31 +1,31 @@
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-const MySwal = withReactContent(Swal);
+const MySwal = withReactContent(Swal)
 
 function confirmAlert(title, message) {
   MySwal.fire({
     title: title,
     text: message,
-    icon: "success",
-  });
+    icon: 'success',
+  })
 }
 
 function errorAlert(title, message) {
   MySwal.fire({
     title: title,
     text: message,
-    icon: "error",
-  });
+    icon: 'error',
+  })
 }
 
 function infoAlert(title, message) {
   MySwal.fire({
     title: title,
     text: message,
-    icon: "info",
-    iconColor: "#EC5800",
-  });
+    icon: 'info',
+    iconColor: '#EC5800',
+  })
 }
 
 const questionAlert = async (title, message) => {
@@ -33,24 +33,22 @@ const questionAlert = async (title, message) => {
     const response = await MySwal.fire({
       title: title,
       text: message,
-      icon: "question",
+      icon: 'question',
       showDenyButton: true,
-      denyButtonText: "No",
-      confirmButtonColor: "#3CB371",
-      confirmButtonText: "Sí",
-    });
+      denyButtonText: 'No',
+      confirmButtonColor: '#3CB371',
+      confirmButtonText: 'Sí',
+    })
     if (response.isConfirmed) {
-      MySwal.fire(
-        "Éxito",
-        "La operación fue realizada exitosamente",
-        "success"
-      );
+      MySwal.fire('Éxito', 'La operación fue realizada exitosamente', 'success')
+      return response
     } else if (response.isDenied) {
-      MySwal.fire("Información", "La operación fue cancelada", "info");
+      MySwal.fire('Información', 'La operación fue cancelada', 'info')
+      throw new Error('question was denied')
     }
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
-export default { confirmAlert, errorAlert, infoAlert, questionAlert };
+export default { confirmAlert, errorAlert, infoAlert, questionAlert }

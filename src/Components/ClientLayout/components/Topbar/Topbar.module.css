@@ -1,84 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
-.topbar{
-    padding: 1rem;
-    background: #fff;
-    width: 100%;
+
+.topbar {
+  padding: 1rem;
+  background: #fff;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  right: 0;
 }
-.brand{
-    font-family: 'Quicksand';
-    font-size: 1.2rem;
-    color: #3564FD;
-}
-.menu_wrapper{
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255,255,255,50%);
-    top: 0;
-}
-.menu{
-    width: 45vw;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: rgb(231 238 255 / 50%) 10px 0px 31px 0px;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.icon_button{
-    background-color: rgba(0,0,0,0);
-    border:none;
-    width:fit-content
-}
-.menu .icon_button{
-    margin-left: 1.2rem;
-    margin-top: 1.2rem;
-}
-.menu_header{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 5%);
-    margin-bottom: 0.7rem;
-    align-items: center;
-    margin-top: 1rem;
-}
-.topbar .avatar{
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.1rem;
-    margin-right: 1rem;
-}
-.avatar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 4rem;
-    height: 4rem;
-    padding: 1rem;
-    border-radius: 50%;
-    color: #3564FD;
-    font-size: 1.5rem;
-    background-color: #EBF0FF;
-}
-.username{
-    width: 100%;
-    text-align: center;
-    padding: 1rem 1rem 2rem 1rem;
-    font-weight: 600;
-}
-.user_topbar{
-    display: flex;
-    align-items: center;
-}
-.user_topbar .username{
-    padding: 0;
+.brand {
+  font-family: 'Quicksand';
+  font-size: 1.2rem;
+  color: #3564fd;
 }
 
-@media (min-width: 768px){
-   .topbar{
-        box-shadow: rgba(231, 238, 255, 0.5) 0px 8px 20px 0px;
-   }
+.menu {
+  width: 45vw;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: rgb(231 238 255 / 50%) 10px 0px 31px 0px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.icon_button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  width: fit-content;
+}
+.menu .icon_button {
+  margin-left: 1.2rem;
+  margin-top: 1.2rem;
+}
+.menu_header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 5%);
+  margin-bottom: 0.7rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.topbar .avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.1rem;
+  margin-right: 1rem;
+}
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  padding: 1rem;
+  border-radius: 50%;
+  color: #3564fd;
+  font-size: 1.5rem;
+  background-color: #ebf0ff;
+}
+.username {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 1rem 2rem 1rem;
+  font-weight: 600;
+}
+.user_topbar {
+  display: flex;
+  align-items: center;
+}
+.user_topbar .username {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .topbar {
+    box-shadow: rgba(231, 238, 255, 0.5) 0px 8px 20px 0px;
+  }
 }

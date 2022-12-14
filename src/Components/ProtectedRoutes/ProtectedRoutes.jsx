@@ -11,9 +11,7 @@ const ProtectedRoutes = ({ redirectPath, protectedEndpoints, children }) => {
   const user = jwt_decode(token)
   const userIsAdmin = user.roleId === 2
 
-  if (isProtected && !userIsAdmin) {
-    return <Navigate to={redirectPath} replace /> // lo ideal sería que retorne el componente Not Found
-  }
+  if (isProtected && !userIsAdmin) return <Navigate to="/" />
 
   return children
 }
