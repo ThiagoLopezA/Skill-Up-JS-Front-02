@@ -40,22 +40,22 @@ export default function UserForm({
         placeholder={isRegisterPlaceholder}
         formik={formik}
       />
-      {action === "register" && (
+      <div className={`${action === "register" ? "d-none" : "d-flex"}`}>
         <InputField
           name="newPassword"
           type="password"
           placeholder="Nueva contraseña"
           formik={formik}
         />
-      )}
+      </div>
       <InputField
         name={isConfirm}
         type="password"
         placeholder={isConfirmPlaceholder}
         formik={formik}
       />
-      <Button type="submit" variant="primary">
-        {action === "register" ? "Registrar" : "Enviar"}
+      <Button type="submit" variant="primary" fullWidth size="md">
+        {action === "register" ? "Registrarme" : "Enviar"}
       </Button>
     </form>
   );
