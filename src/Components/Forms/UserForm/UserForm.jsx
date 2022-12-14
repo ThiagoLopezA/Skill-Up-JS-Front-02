@@ -40,7 +40,7 @@ export default function UserForm({
         placeholder={isRegisterPlaceholder}
         formik={formik}
       />
-      {action === "register" && (
+      {action === "edit" && (
         <InputField
           name="newPassword"
           type="password"
