@@ -17,7 +17,7 @@ export default function Items() {
       </defs>
       <use
         fill="currentColor"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         xlinkHref="#HomeOutlinedIcon_7952408621842264_a"
       ></use>
     </svg>
@@ -41,7 +41,7 @@ export default function Items() {
         fill="currentColor"
         transform="rotate(90 12 12)"
         xlinkHref="#CardOutlinedIcon_31959285949580396_a"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       ></use>
     </svg>
   );
@@ -62,7 +62,7 @@ export default function Items() {
       </defs>
       <use
         fill="currentColor"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         xlinkHref="#HelpCircleOutlinedIcon_5960557062750991_a"
       ></use>
     </svg>
@@ -85,7 +85,7 @@ export default function Items() {
       <use
         fill="currentColor"
         xlinkHref="#InvestmentsOutlinedIcon_14857814924797785_a"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       ></use>
     </svg>
   );

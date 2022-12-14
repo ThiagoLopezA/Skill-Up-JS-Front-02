@@ -1,0 +1,29 @@
+.transactionWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+.title{
+    font-size: 1rem;
+    margin: 0;
+    width: 10rem;
+    white-space: nowrap;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.subtitle{
+    font-size: .88rem;
+    color: #565656
+}
+.amount{
+    font-size: 1rem;
+    font-weight: 600;
+}
+.date{
+    font-size: .88rem;
+    text-align: right;
+    color: #565656
+}

@@ -13,7 +13,7 @@ export default function ClientLayout() {
         </div>
         <div className="col-12 col-md-9 p-0 ">
           <Topbar />
-          <div className={`container-fluid ${styles.content}`}>
+          <div className={`${styles.content}`}>
             <Outlet />
           </div>
         </div>
