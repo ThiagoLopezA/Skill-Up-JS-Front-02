@@ -1,0 +1,11 @@
+.title{
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: 500;
+    color: rgb(58, 58, 58);
+}
+.divider{
+    width: 1px;
+    height: 2rem;
+    background-color: #3564FD;
+}

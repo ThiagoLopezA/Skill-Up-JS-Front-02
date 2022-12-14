@@ -34,9 +34,6 @@ export default function LoginForm() {
         <Button type="submit" variant="primary" size="md" fullWidth>
           Iniciar sesión
         </Button>
-        <Button variant="outlined" size="md" fullWidth>
-          Registrarse
-        </Button>
       </div>
     </form>
   );

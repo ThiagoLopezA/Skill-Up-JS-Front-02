@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { getUser } from '../../../../app/authSlice'
+import { getUser } from '../../../../../app/authSlice'
 
 export default function Items() {
   const user = useSelector(getUser)
