@@ -4,6 +4,8 @@ import Button from '../../../Button/Button'
 import styles from './Topbar.module.css'
 import Nav from '../Nav/Nav'
 
+import './AsideActive.css'
+
 export default function Topbar() {
   const [visibility, setVisibility] = useState(false)
   const handleVisibility = () => setVisibility(!visibility)
@@ -68,30 +70,31 @@ export default function Topbar() {
         <div className="d-md-none"></div>
       </section>
 
-      {visibility && (
-        <section className={`${styles.menu_wrapper} d-md-none`}>
-          <div className={`${styles.menu} pb-4`}>
-            <div>
-              <button
-                onClick={handleVisibility}
-                className={`${styles.icon_button}`}
-              >
-                {closeIcon}
-              </button>
-              <div className={`${styles.menu_header}`}>
-                <div className={`${styles.avatar}`}>US</div>
-                <span className={`${styles.username}`}>
-                  Nombre Apellido Usuario
-                </span>
-              </div>
-              <Nav />
+      {/* HIDDEN/SHOW */}
+      <section
+        className={`AsideActive ${visibility ? 'active' : ''} d-md-none`}
+      >
+        <div className={`${styles.menu} pb-4`}>
+          <div>
+            <button
+              onClick={handleVisibility}
+              className={`${styles.icon_button}`}
+            >
+              {closeIcon}
+            </button>
+            <div className={`${styles.menu_header}`}>
+              <div className={`${styles.avatar}`}>US</div>
+              <span className={`${styles.username}`}>
+                Nombre Apellido Usuario
+              </span>
             </div>
-            <Button variant="secondary" size="md">
-              Cerrar sesión
-            </Button>
+            <Nav />
           </div>
-        </section>
-      )}
+          <Button variant="secondary" size="md">
+            Cerrar sesión
+          </Button>
+        </div>
+      </section>
     </>
   )
 }
