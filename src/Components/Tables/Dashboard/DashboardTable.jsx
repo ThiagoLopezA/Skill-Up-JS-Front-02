@@ -10,15 +10,15 @@ const DashboardTable = ({
   onUpdate,
 }) => {
   return (
-    <div class="card">
-      <div class="card-header d-flex gap-2 align-datas-center justify-content-between">
+    <div className="card">
+      <div className="card-header d-flex gap-2 align-datas-center justify-content-between">
         <div className="d-flex align-items-center gap-1">
           <span>
-            <i class="bi bi-table me-2"></i>
+            <i className="bi bi-table me-2"></i>
           </span>
           <select
             value={tableName}
-            class="form-select"
+            className="form-select"
             style={{ width: 'fit-content' }}
             onChange={e => {
               onChangeTable(e.target.value)
@@ -38,11 +38,11 @@ const DashboardTable = ({
         </button>
       </div>
 
-      <div class="card-body">
-        <div class="table-responsive">
+      <div className="card-body">
+        <div className="table-responsive">
           <table
             id="example"
-            class="table table-striped data-table"
+            className="table table-striped data-table"
             style={{ width: '100%' }}
           >
             <thead>

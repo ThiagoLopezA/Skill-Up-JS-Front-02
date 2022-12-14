@@ -1,15 +1,23 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import "./App.css";
-import AppRoutes from "./routes";
-import Footer from "./Components/Footer/Footer";
+import { useEffect } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getUserFromLocalStorage } from './app/authSlice'
+
+import AppRoutes from './routes'
+import './App.css'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getUserFromLocalStorage())
+  }, [])
+
   return (
     <Router>
       <AppRoutes />
-      {/* <Footer /> */}
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

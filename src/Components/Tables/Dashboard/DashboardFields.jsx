@@ -1,7 +1,7 @@
 export const FieldSelect = ({ options, value, onChange }) => (
   <select
     value={value}
-    class="form-select"
+    className="form-select"
     style={{ width: 'fit-content' }}
     onChange={e => onChange(e.target.value)}
   >
@@ -16,7 +16,7 @@ export const FieldSelect = ({ options, value, onChange }) => (
 export const FieldInput = ({ value, onChange }) => (
   <input
     type="text"
-    class="form-control"
+    className="form-control"
     style={{ width: 'fit-content' }}
     value={value}
     placeholder="Edit..."

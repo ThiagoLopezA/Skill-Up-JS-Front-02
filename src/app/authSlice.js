@@ -1,80 +1,168 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const urlAuth = "http://localhost:3000/api/auth/";
-const urlUsers = "http://localhost:3000/api/users";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import jwt_decode from 'jwt-decode'
+import alerts from '../services/alerts'
+import { getRequest, postRequest, putRequest } from '../services/httpRequest'
 
 export const userRegister = createAsyncThunk(
-  "USER_REGISTER",
+  'USER_REGISTER',
   async (data, thunkAPI) => {
     try {
-      const { user } = await axios.post(`${urlUsers}/register`, data); //En el back la ruta de registrar un usuario debería tener la extensión "/register"
-      return user;
+      const { body } = await postRequest('/users/register', data)
+      const token = body.encrypted
+      const user = jwt_decode(token)
+
+      return { user, token }
     } catch (error) {
-      return thunkAPI.rejectWithValue("Something went wrong"); //Cuando tengamos el formulario de register cambio el mensaje
+      return thunkAPI.rejectWithValue('Something went wrong') //Cuando tengamos el formulario de register cambio el mensaje
     }
   }
-);
+)
 
 export const userLogin = createAsyncThunk(
-  "USER_LOGIN",
+  'USER_LOGIN',
   async (data, thunkAPI) => {
     try {
-      const { user } = await axios.post(`${urlAuth}/login`, data);
-      localStorage.setItem("user", JSON.stringify(data));
+      const { body: token } = await postRequest('/auth/login', data)
+      const user = jwt_decode(token)
 
-      return user;
+      return { user, token }
     } catch (error) {
-      return thunkAPI.rejectWithValue("Something went wrong"); //Cuando tengamos el formulario de login cambio el mensaje
+      return thunkAPI.rejectWithValue('Something went wrong') //Cuando tengamos el formulario de login cambio el mensaje
     }
   }
-);
+)
+
+export const getUserById = createAsyncThunk(
+  'USER_GET',
+  async (id, thunkAPI) => {
+    try {
+      const { body } = await getRequest(`/users/${id}`)
+      const token = body.encrypted
+      const user = jwt_decode(token)
+
+      return { user, token }
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong') //Cuando tengamos el formulario de login cambio el mensaje
+    }
+  }
+)
+
+export const updateUser = createAsyncThunk(
+  'USER_UPDATE',
+  async ({ changes, id }, thunkAPI) => {
+    try {
+      const { code } = await putRequest(`/users/${id}`, changes, {
+        'Content-Type': 'multipart/form-data',
+      })
+
+      // User retrieved successfully:
+      if (code === 202) {
+        thunkAPI.dispatch(getUserById(id))
+        alerts.confirmAlert('Usuario actualizado correctamente')
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong') //Cuando tengamos el formulario de register cambio el mensaje
+    }
+  }
+)
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: {
     user: null,
     token: null,
     error: null,
   },
   reducers: {
-    logout: (state) => {
-      state.user = null;
-      state.token = null;
+    getUserFromLocalStorage: state => {
+      const token = localStorage.getItem('token')
+
+      if (token) {
+        const user = jwt_decode(token)
+        state.token = token
+        state.user = user
+      }
+    },
+    logout: state => {
+      state.user = null
+      state.token = null
+      state.error = null
+      localStorage.removeItem('token')
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
+      // REGISTER
       .addCase(userRegister.pending, (state, action) => {
-        state.loading = true;
+        state.loading = true
       })
       .addCase(userRegister.fulfilled, (state, action) => {
-        const { user, token } = action.payload;
-        state.user = user;
-        state.token = token;
-        state.loading = false;
+        const { user, token } = action.payload
+
+        localStorage.setItem('token', token)
+
+        state.user = user
+        state.token = token
+        state.loading = false
       })
       .addCase(userRegister.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.loading = false
+        state.error = action.payload
       })
+
+      // LOGIN
       .addCase(userLogin.pending, (state, action) => {
-        state.loading = true;
+        state.loading = true
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        const { user, token } = action.payload;
-        state.user = user;
-        state.token = token;
-        state.loading = false;
+        const { user, token } = action.payload
+
+        localStorage.setItem('token', token)
+
+        state.user = user
+        state.token = token
+        state.loading = false
       })
       .addCase(userLogin.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+        state.loading = false
+        state.error = action.payload
+      })
+
+      // UPDATE
+      .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload
+        alerts.errorAlert(
+          'Algo salió mal',
+          'Inténtalo de nuevo o prueba cambiando la imagen'
+        )
+      })
+
+      // GET USER
+      .addCase(getUserById.pending, (state, action) => {
+        state.loading = true
+      })
+      .addCase(getUserById.fulfilled, (state, action) => {
+        const { user, token } = action.payload
+
+        localStorage.setItem('token', token)
+
+        state.user = user
+        state.token = token
+        state.loading = false
+      })
+      .addCase(getUserById.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      })
   },
-});
+})
 
-export const { logout } = userSlice.actions;
+export const getUser = state => state.user.user
+export const getToken = state => state.user.token
+export const getUserIsLoading = state => state.user.loading
+export const getUserError = state => state.user.error
 
-const { reducer } = userSlice;
-export default reducer;
+export const { getUserFromLocalStorage, logout } = userSlice.actions
+
+export default userSlice.reducer
