@@ -7,6 +7,8 @@ import Home from '../pages/Home'
 import ProfileContainer from '../Components/Profile/ProfileContainer'
 import BackofficeContainer from '../pages/Backoffice/BackofficeContainer'
 import Transactions from '../Components/Transactions/Transactions'
+import UserRegistrationForm from '../Components/Forms/UserForm/UserRegistrationForm';
+import EditUserForm from '../Components/Forms/UserForm/EditUserForm';
 
 const AppRoutes = () => (
   <Routes>
@@ -15,6 +17,8 @@ const AppRoutes = () => (
       <Route path="/" element={<Home />} />
       <Route path="/profile" element={<ProfileContainer />} />
       <Route path="/transactions" element={<Transactions />} />
+      <Route path="/signup" element={<UserRegistrationForm />} />
+      <Route path="/edit-user" element={<EditUserForm user={{ firstName: "Pablo", lastName: 'Polanco', email: "Pablo_Polanco@mail.com" }} />} />
       <Route path="/backoffice" element={<BackofficeContainer />} />
     </Route>
   </Routes>
