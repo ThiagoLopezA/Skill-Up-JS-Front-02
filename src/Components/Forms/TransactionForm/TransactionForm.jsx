@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import Button from "../../Button/Button";
 import InputField from "../../InputField/InputField";
-import SelectField from "../../SelectField/SelectField";
+import jwtDecode from "jwt-decode";
 
 export default function TransactionForm({
   handleSubmit,
@@ -11,6 +11,10 @@ export default function TransactionForm({
   initialValues,
   type,
 }) {
+  const token = localStorage.getItem("token");
+  const { id } = jwtDecode(token);
+  initialValues.userId = id;
+
   const onSubmit = values => {
     console.log(values);
     handleSubmit(values);

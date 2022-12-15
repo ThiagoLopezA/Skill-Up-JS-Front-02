@@ -6,97 +6,46 @@ import TransactionContainer from "../../Components/Transaction/TransactionContai
 import styles from "./Home.module.css";
 import { useDispatch } from "react-redux";
 import { getUserFromLocalStorage } from "../../app/authSlice";
+import { getAllUserTransactions } from "../../app/transactionSlice";
+import { getTransactions } from "../../app/transactionSlice";
+import { useSelector } from "react-redux";
 import Balance from "../../Components/Balance/Balance";
 
 export default function Home() {
+  const { transactions } = useSelector(getTransactions);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUserFromLocalStorage());
+    dispatch(getAllUserTransactions());
   }, []);
+
   const [visibility, setVisibility] = useState(false);
   const handleVisibility = () => setVisibility(!visibility);
-  const transactions = [
+
+  const incomes = transactions
+    .filter(e => e.categoryId === 1)
+    .reduce((ac, e) => ac + parseInt(e.amount), 0);
+
+  const outcomes = transactions
+    .filter(e => e.categoryId === 2)
+    .reduce((ac, e) => ac + parseInt(e.amount), 0);
+
+  const data = [
     {
-      id: 3,
-      description: null,
-      amount: "1000.00",
-      date: "2022-12-14T12:37:22.000Z",
-      userId: 23,
-      toUserId: 23,
-      categoryId: 1,
-      createdAt: "2022-12-14T12:37:22.000Z",
-      updatedAt: "2022-12-14T12:37:22.000Z",
-      deletedAt: null,
-      User: {
-        firstName: "Thiago",
-        lastName: "Lopez",
-      },
+      name: "incomes",
+      value: incomes,
+      percentage: parseFloat((incomes * 100) / (incomes + outcomes)).toFixed(2),
     },
     {
-      id: 4,
-      description: null,
-      amount: "1000.00",
-      date: "2022-12-14T12:37:25.000Z",
-      userId: 23,
-      toUserId: 23,
-      categoryId: 1,
-      createdAt: "2022-12-14T12:37:25.000Z",
-      updatedAt: "2022-12-14T12:37:25.000Z",
-      deletedAt: null,
-      User: {
-        firstName: "Thiago",
-        lastName: "Lopez",
-      },
-    },
-    {
-      id: 5,
-      description: null,
-      amount: "500.00",
-      date: "2022-12-14T12:37:40.000Z",
-      userId: 23,
-      toUserId: 1,
-      categoryId: 2,
-      createdAt: "2022-12-14T12:37:40.000Z",
-      updatedAt: "2022-12-14T12:37:40.000Z",
-      deletedAt: null,
-      User: {
-        firstName: "Homero",
-        lastName: "Simpson",
-      },
-    },
-    {
-      id: 5,
-      description: null,
-      amount: "250.00",
-      date: "2022-12-14T12:37:40.000Z",
-      userId: 23,
-      toUserId: 1,
-      categoryId: 2,
-      createdAt: "2022-12-14T12:37:40.000Z",
-      updatedAt: "2022-12-14T12:37:40.000Z",
-      deletedAt: null,
-      User: {
-        firstName: "Homero",
-        lastName: "Simpson",
-      },
-    },
-    {
-      id: 5,
-      description: null,
-      amount: "1500.00",
-      date: "2022-12-14T12:37:40.000Z",
-      userId: 23,
-      toUserId: 1,
-      categoryId: 2,
-      createdAt: "2022-12-14T12:37:40.000Z",
-      updatedAt: "2022-12-14T12:37:40.000Z",
-      deletedAt: null,
-      User: {
-        firstName: "Homero",
-        lastName: "Simpson",
-      },
+      name: "outcomes",
+      value: outcomes,
+      percentage: parseFloat((outcomes * 100) / (incomes + outcomes)).toFixed(
+        2
+      ),
     },
   ];
+
   return (
     <div className={`container-fluid`}>
       <div className="row">
@@ -108,6 +57,7 @@ export default function Home() {
           </Balance>
           <div className={`${styles.transactions}`}>
             <h2 className={`${styles.title}`}>Movimientos</h2>
+
             {transactions.map((e, i) => {
               return <TransactionContainer transaction={e} key={e + i} />;
             })}
@@ -117,16 +67,20 @@ export default function Home() {
           <h2 className={styles.title}>Análisis de cuenta</h2>
           <div className={styles.analisisArea}>
             <div className={styles.chartContainer}>
-              <Chart />
+              <Chart data={data} />
             </div>
             <div>
               <div className={styles.references}>
                 <div className={`${styles.box} ${styles.incomeColor}`}></div>
-                <p className={styles.subtitle}>Cargas (50%)</p>
+                <p className={styles.subtitle}>
+                  Cargas {`(${data[0].percentage}%)`}
+                </p>
               </div>
               <div className={styles.references}>
                 <div className={`${styles.box} ${styles.outcomeColor}`}></div>
-                <p className={styles.subtitle}>Transferencias (50%)</p>
+                <p className={styles.subtitle}>
+                  Transferencias {`(${data[1].percentage}%)`}
+                </p>
               </div>
             </div>
           </div>
