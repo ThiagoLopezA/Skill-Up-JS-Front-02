@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Topbar from "./Topbar";
 import jwtDecode from "jwt-decode";
 import useRedirect from "../../../../../hooks/useRedirect";
+import DefaultAvatar from "../../../../../assets/default-avatar.png";
 
 export default function TopbarContainer() {
   const [visibility, setVisibility] = useState(false);
